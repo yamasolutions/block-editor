@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 /**
  * WordPress dependencies
  */
-import '@wordpress/editor'; // This shouldn't be necessary - currently required otherwise notices fails to initialized
+import '@wordpress/editor'; // This shouldn't be necessary - currently required otherwise notices fails to initialized, think the data store is being registered
 import '@wordpress/format-library';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useState, useMemo } from '@wordpress/element';
@@ -30,7 +30,7 @@ import {
 import Sidebar from '../sidebar';
 import Header from '../header';
 import Notices from '../notices';
-import '../../stores';
+import '../../stores'; // TODO: Think this store registering needs to be moved somewhere else so that it happens everytime a BlockEditor is initialized
 
 function BlockEditor( { input, settings: _settings } ) {
   const blocks = useSelect((select) => select("block-editor").getBlocks());

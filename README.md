@@ -29,7 +29,6 @@ $ gem install block_editor
 ```
 rails block_editor:install:migrations
 rails db:migrate
-
 ```
 * Add `include BlockEditor::Listable` to any model you wish to associate the block editor with, i.e.
 
@@ -60,6 +59,11 @@ Remember to permit the block list attributes if you're using Strong Parameters (
   end
 ```
 
+Note: You may also need to specifically set the listable attribute within your controller before saving, i.e. -
+```
+@post.active_block_list.listable = @post
+```
+
 ### Styling
 
 Add the frontend stylesheet where you are displaying the user created block lists;
@@ -76,6 +80,12 @@ The below files should be overridden within your application in order to style y
 * `app/assets/stylesheets/block_editor/frontend/blocks.scss` - Any styles that should be displayed within the frontend and backend
 * `app/assets/stylesheets/block_editor/backend/blocks.scss` - Any styles that should _only_ be displayed within the block editor itself, i.e when creating or editing the blocks
 
+
+### Turbolinks
+Currently Block Editor is not compatible with Turbolinks as history is only being reset on full page loads. To disable Turbolinks per page add the following in your layout view file within your `<HEAD>`;;
+```
+<meta name="turbolinks-visit-control" content="reload">
+```
 
 ### Adding/Removing blocks
 *Currently there isn't a way of adding or removing blocks without forking the gem.*
