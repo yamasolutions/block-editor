@@ -18,5 +18,11 @@ module BlockEditor
       )
     end
   end
+
+  mattr_accessor :dynamic_blocks
+  @@dynamic_blocks = []
+
+  mattr_accessor :frontend_parent_controller
+  @@frontend_parent_controller = 'ApplicationController'
 end
 

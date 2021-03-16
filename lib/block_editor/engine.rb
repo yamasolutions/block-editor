@@ -21,5 +21,14 @@ module BlockEditor
     initializer 'static assets' do |app|
       app.middleware.insert_before(::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public")
     end
+
+    initializer 'block_editor.assets.precompile' do |app|
+      assets_for_precompile = [
+        'block_editor/frontend.css',
+        'block_editor/backend.css'
+      ]
+
+      app.config.assets.precompile.concat assets_for_precompile
+    end
   end
 end
