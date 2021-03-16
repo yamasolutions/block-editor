@@ -1,0 +1,108 @@
+$primary-color: #1b8ecf;
+
+@function theme($selector) {
+  @return $primary-color;
+}
+
+@function color($color) {
+  @return $color;
+}
+
+@import "~@wordpress/base-styles/colors";
+@import "~@wordpress/base-styles/variables";
+@import "~@wordpress/base-styles/mixins";
+@import "~@wordpress/base-styles/breakpoints";
+@import "~@wordpress/base-styles/animations";
+@import "~@wordpress/base-styles/z-index";
+
+.block-editor {
+  label {
+    font-size: $default-font-size;
+  }
+}
+
+@import "~@wordpress/components/src/style";
+@import "~@wordpress/block-editor/src/style";
+@import "~@wordpress/block-library/src/style";
+
+$header-height: 50px;
+
+// Internal
+@import "../../block_editor/components/sidebar/styles";
+@import "../../block_editor/components/header/styles";
+@import "../../block_editor/components/block-editor/styles";
+
+.block-editor {
+  @include reset;
+  position: relative;
+  margin: 1rem 0;
+  padding: 0;
+  font-family: $default-font;
+  font-size: $default-font-size;
+  border: 1px solid #f3f4f5;
+  min-height: 500px;
+
+  a,
+  div {
+    outline: 0;
+  }
+
+  .block-editor-url-popover__additional-controls,
+  .block-editor-media-replace-flow__options .components-form-file-upload {
+    display: none;
+  }
+
+  &:not(.block-editor__fullscreen) {
+    .block-editor__size-toggle-button__minimize {
+      display: none;
+    }
+  }
+
+  &.block-editor__fullscreen {
+    .block-editor__size-toggle-button__maximize {
+      display: none;
+    }
+  }
+
+  &__size-toggle-button {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    z-index: 1;
+  }
+
+  &__fullscreen {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    padding: 0;
+    z-index: 99;
+    margin: 0;
+    .block-editor {
+      height: 100%;
+    }
+  }
+}
+
+// In order to use mix-blend-mode, this element needs to have an explicitly set background-color.
+// We scope it to .wp-toolbar to be wp-admin only, to prevent bleed into other implementations.
+html.wp-toolbar {
+  background: $white;
+}
+
+// The modals are shown outside the .block-editor wrapper, they need these styles.
+.block-editor, .components-modal__frame {
+  @include reset;
+}
+
+.block-editor-block-breadcrumb {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  background-color: $white;
+  width: 100%;
+  border-top: 1px solid #f3f4f5;
+  padding: 0.5rem 0;
+}
