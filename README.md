@@ -1,9 +1,12 @@
 # Block Editor for Ruby on Rails
 This editor uses packages from the [Wordpress Gutenberg project](https://github.com/WordPress/gutenberg) to build a standalone block editor for Rails. This editor has been extracted from [Integral CMS](https://github.com/yamasolutions/integral) where it was built following the [Wordpress custom block editor tutorial](https://developer.wordpress.org/block-editor/how-to-guides/platform/custom-block-editor/).
 
+Looking for a demo? Checkout this [simple host application example.](https://block-editor-rails.herokuapp.com/)
+
 More information;
 
-* [Gutenberg Demo](https://wordpress.org/gutenberg/)
+* [Simple host application example source repository](https://github.com/yamasolutions/block-editor-sample)
+* [Current Wordpress Editor Demo](https://wordpress.org/gutenberg/)
 * [Gutenberg Block Editor Developer Documentation](https://developer.wordpress.org/block-editor/)
 
 ## Installation

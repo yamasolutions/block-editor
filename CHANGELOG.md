@@ -14,7 +14,7 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 ### Fixed
 -
 
-## v0.1.2 - 2021-03-16
+## v0.1.3 - 2021-03-16
 
 ### Added
 - Initial release
