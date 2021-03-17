@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://github.com/yamasolutions/block-editor"
   spec.metadata["changelog_uri"] = "https://github.com/yamasolutions/block-editor/blob/master/CHANGELOG.md"
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.files = Dir["{app,bin,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md", "package.json", "yarn.lock", "postcss.config.js"]
 
   spec.add_dependency "rails", "~> 6.0"
   spec.add_dependency 'webpacker', '~> 5.1'

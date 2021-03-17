@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    block_editor (0.1.0)
+    block_editor (0.1.2)
       rails (~> 6.0)
       webpacker (~> 5.1)
 

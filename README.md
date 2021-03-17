@@ -50,6 +50,11 @@ end
 ```
 * Boom! You have a Block Editor linked to your model
 
+Note: If the error `Webpacker::Manifest::MissingEntryError` appears you need to run the following command to precompile the BlockEditor assets;
+```
+rails block_editor:webpacker:compile
+```
+
 ### Strong Parameters
 Remember to permit the block list attributes if you're using Strong Parameters (you should be), i.e;
 ```
@@ -80,6 +85,15 @@ The below files should be overridden within your application in order to style y
 * `app/assets/stylesheets/block_editor/frontend/blocks.scss` - Any styles that should be displayed within the frontend and backend
 * `app/assets/stylesheets/block_editor/backend/blocks.scss` - Any styles that should _only_ be displayed within the block editor itself, i.e when creating or editing the blocks
 
+### MediaUploader & Images
+There is no built in MediaUploader or media gallery, it is up to the host application to implement this.
+
+When the media uploader is requested the Block Editor checks if `window.MediaUploader` is defined. If it is defined the block editor will call `window.MediaUploader.open(callback)`, otherwise it will randomly select an image from [Unsplash](https://unsplash.com)
+
+When an image is successfully uploaded or selected the MediaUploader instance should call the callback which was passed into the `open` function;
+```
+callback({url: imageUrl})
+```
 
 ### Turbolinks
 Currently Block Editor is not compatible with Turbolinks as history is only being reset on full page loads. To disable Turbolinks per page add the following in your layout view file within your `<HEAD>`;;
