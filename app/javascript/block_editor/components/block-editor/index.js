@@ -9,6 +9,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useState, useMemo } from '@wordpress/element';
 import { serialize, parse } from '@wordpress/blocks';
 import { InterfaceSkeleton as EditorSkeleton } from '@wordpress/interface';
+import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import {
   BlockEditorKeyboardShortcuts,
   BlockEditorProvider,
@@ -45,6 +46,50 @@ function BlockEditor( { input, settings: _settings } ) {
     updateBlocks(newBlocks, true);
     input.value = serialize(newBlocks);
   }
+
+  // Registering the shortcuts
+  const { registerShortcut } = useDispatch( 'core/keyboard-shortcuts' );
+  useEffect( () => {
+    registerShortcut( {
+      name: 'core/editor/undo',
+      category: 'global',
+      description: 'Undo your last changes.',
+      keyCombination: {
+        modifier: 'primary',
+        character: 'z',
+      },
+    } );
+
+    registerShortcut( {
+      name: 'core/editor/redo',
+      category: 'global',
+      description: 'Redo your last undo.',
+      keyCombination: {
+        modifier: 'primaryShift',
+        character: 'z',
+      },
+    } );
+  })
+
+  const { redo, undo } = useDispatch( 'block-editor' );
+
+  useShortcut(
+    'core/editor/undo',
+    ( event ) => {
+      undo();
+      event.preventDefault();
+    },
+    { bindGlobal: true }
+  );
+
+  useShortcut(
+    'core/editor/redo',
+    ( event ) => {
+      redo();
+      event.preventDefault();
+    },
+    { bindGlobal: true }
+  );
 
   return (
     <SlotFillProvider>
