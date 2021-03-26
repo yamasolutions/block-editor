@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
  * WordPress dependencies
  */
 import { NavigableToolbar } from '@wordpress/block-editor';
+import { TableOfContents } from '@wordpress/editor';
 import { Button } from '@wordpress/components';
 import { minus as minimizeIcon } from '@wordpress/icons';
 import { plus as maximizeIcon } from '@wordpress/icons';
@@ -24,6 +25,8 @@ export default function Header() {
       >
         <HistoryUndo />
         <HistoryRedo />
+        <TableOfContents />
+
         <Button
           icon={ maximizeIcon }
           label={ 'Fullscreen' }

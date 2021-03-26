@@ -23,6 +23,8 @@ $primary-color: #1b8ecf;
 
 @import "~@wordpress/components/src/style";
 @import "~@wordpress/block-editor/src/style";
+@import "~@wordpress/editor/src/components/table-of-contents/style";
+@import "~@wordpress/editor/src/components/document-outline/style";
 @import "~@wordpress/block-library/src/style";
 
 $header-height: 50px;
