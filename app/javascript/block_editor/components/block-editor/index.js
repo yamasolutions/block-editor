@@ -18,6 +18,7 @@ import {
   WritingFlow,
   ObserveTyping,
   BlockBreadcrumb,
+  __experimentalLibrary as Library,
 } from '@wordpress/block-editor';
 import {
   Popover,
@@ -95,6 +96,7 @@ function BlockEditor( { input, settings: _settings } ) {
     <SlotFillProvider>
       <DropZoneProvider>
         <EditorSkeleton
+          leftSidebar={ <Library /> }
           sidebar={<Sidebar />}
           content={
             <>
