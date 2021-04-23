@@ -71,22 +71,6 @@ export const registerBlocks = () => {
     } );
   }
 
-  const applyExtraClass = ( extraProps, blockType, attributes ) => {
-    if ( blockType.name !== 'core/button' ) {
-      return extraProps;
-    }
-
-    if (attributes.hasLargeStyle) {
-      extraProps.className = classnames( extraProps.className, 'large' );
-    }
-
-    if (attributes.hasHollowStyle) {
-      extraProps.className = classnames( extraProps.className, 'is-style-hollow' );
-    }
-
-    return extraProps;
-  }
-
   const withClientIdClassName = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
       if ( props.name !== 'core/button' ) {
@@ -118,12 +102,6 @@ export const registerBlocks = () => {
     'blocks.registerBlockType',
     'block-editor/filters/core-button',
     replaceButtonBlockEdit
-  );
-
-  addFilter(
-    'blocks.getSaveContent.extraProps',
-    'block-editor/filters/core-button-classes',
-    applyExtraClass
   );
 
   addFilter(
@@ -237,6 +215,14 @@ export const registerBlocks = () => {
   registerBlockStyle( 'core/button', {
     name: 'secondary',
     label: 'Secondary'
+  } );
+  registerBlockStyle( 'core/button', {
+    name: 'outline-primary',
+    label: 'Primary (Outlined)'
+  } );
+  registerBlockStyle( 'core/button', {
+    name: 'outline-secondary',
+    label: 'Secondary (Outlined)'
   } );
   registerBlockStyle( 'core/table', {
     name: 'striped',
