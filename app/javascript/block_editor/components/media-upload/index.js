@@ -20,12 +20,12 @@ class MediaUpload extends Component {
   }
 
   openUploader() {
-    if (window.MediaUploader == undefined) {
-      console.log('window.MediaUploader undefined. Pulling in random image from Unsplash')
+    if (window.BlockEditorMediaUploader == undefined) {
+      console.log('window.BlockEditorMediaUploader undefined. Pulling in random image from Unsplash')
 
       this.props.onSelect( { url: 'https://source.unsplash.com/random/800x500' });
     } else {
-      this.MediaUploader.open(this.props.onSelect);
+      window.BlockEditorMediaUploader.open(this.props.onSelect);
     }
   }
 

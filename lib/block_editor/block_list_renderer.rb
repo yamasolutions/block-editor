@@ -11,6 +11,7 @@ module BlockEditor
 
       # # Find & render all instances of a dynamic block
       BlockEditor.dynamic_blocks.each do |dynamic_block|
+        dynamic_block = dynamic_block.constantize
         html.xpath('//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{dynamic_block.name}") }.each do |block_instance|
           block_attributes = block_instance.inner_text.split(" wp:#{dynamic_block.name}")[1][0...-1]
           block_attributes = block_attributes.blank? ? {} : JSON.parse(block_attributes)

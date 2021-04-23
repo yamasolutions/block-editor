@@ -88,12 +88,12 @@ The below files should be overridden within your application in order to style y
 * `app/assets/stylesheets/block_editor/frontend/blocks.scss` - Any styles that should be displayed within the frontend and backend
 * `app/assets/stylesheets/block_editor/backend/blocks.scss` - Any styles that should _only_ be displayed within the block editor itself, i.e when creating or editing the blocks
 
-### MediaUploader & Images
+### Media Uploader & Images
 There is no built in MediaUploader or media gallery, it is up to the host application to implement this.
 
-When the media uploader is requested the Block Editor checks if `window.MediaUploader` is defined. If it is defined the block editor will call `window.MediaUploader.open(callback)`, otherwise it will randomly select an image from [Unsplash](https://unsplash.com)
+When the media uploader is requested the Block Editor checks if `window.BlockEditorMediaUploader` is defined. If it is defined the block editor will call `window.BlockEditorMediaUploader.open(callback)`, otherwise it will randomly select an image from [Unsplash](https://unsplash.com)
 
-When an image is successfully uploaded or selected the MediaUploader instance should call the callback which was passed into the `open` function;
+When an image is successfully uploaded or selected the BlockEditorMediaUploader instance should call the callback which was passed into the `open` function;
 ```
 callback({url: imageUrl})
 ```

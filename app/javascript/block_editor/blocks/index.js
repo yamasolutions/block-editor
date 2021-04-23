@@ -30,6 +30,14 @@ import ButtonEdit from './button/edit';
 import ImageEdit from './image/edit';
 import MediaUpload from '../components/media-upload';
 
+// import * as accordion from './be-accordion';
+import * as callout from './be-alert';
+import * as card from './be-card';
+// import * as cover from './cover';
+// import * as coverButton from './cover-button';
+// import * as recentPosts from './recent-posts';
+import * as contactForm from './be-contact-form';
+
 export const registerBlocks = () => {
   const replaceButtonBlockEdit = ( settings, name ) => {
     if ( name !== 'core/button' ) {
@@ -205,6 +213,16 @@ export const registerBlocks = () => {
   unregisterBlockVariation('core/columns', 'two-columns-one-third-two-thirds');
   unregisterBlockVariation('core/columns', 'two-columns-two-thirds-one-third');
   unregisterBlockVariation('core/columns', 'three-columns-wider-center');
+
+  // Register custom blocks
+  // registerBlockType(accordion.name, accordion.settings);
+  registerBlockType(callout.name, callout.settings);
+  registerBlockType(card.name, card.settings);
+  // registerBlockType(recentPosts.name, recentPosts.settings);
+  registerBlockType(contactForm.name, contactForm.settings);
+  //
+  // registerBlockType(cover.name, cover.settings);
+  // registerBlockType(coverButton.name, coverButton.settings);
 
   // Register custom block styles
   registerBlockStyle( 'core/button', {
