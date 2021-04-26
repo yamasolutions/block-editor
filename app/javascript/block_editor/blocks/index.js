@@ -240,13 +240,13 @@ export const registerBlocks = () => {
     label: 'Secondary (Outlined)'
   } );
   registerBlockStyle( 'core/table', {
-    name: 'striped',
-    label: 'Striped',
+    name: 'unstriped',
+    label: 'Unstriped',
     isDefault: true
   } );
   registerBlockStyle( 'core/table', {
-    name: 'unstriped',
-    label: 'Unstriped'
+    name: 'striped',
+    label: 'Striped'
   } );
   registerBlockStyle( 'core/image', {
     name: 'default',
