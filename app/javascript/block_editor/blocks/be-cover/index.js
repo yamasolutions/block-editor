@@ -27,8 +27,9 @@ export const settings = {
   icon,
   category: 'formatting',
 	styles: [
-		{ name: 'primary', label: 'Primary', isDefault: true },
-		{ name: 'secondary', label: 'Secondary' }
+		{ name: 'left', label: 'Left Side', isDefault: true },
+		{ name: 'right', label: 'Right Side' },
+		{ name: 'full-width', label: 'Full Width' }
 	],
   example: {
     innerBlocks: [
