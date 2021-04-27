@@ -30,7 +30,7 @@ import ButtonEdit from './button/edit';
 import ImageEdit from './image/edit';
 import MediaUpload from '../components/media-upload';
 
-// import * as accordion from './be-accordion';
+import * as accordion from './be-accordion';
 import * as callout from './be-alert';
 import * as card from './be-card';
 import * as cover from './be-cover';
@@ -214,7 +214,7 @@ export const registerBlocks = () => {
   unregisterBlockVariation('core/columns', 'three-columns-wider-center');
 
   // Register custom blocks
-  // registerBlockType(accordion.name, accordion.settings);
+  registerBlockType(accordion.name, accordion.settings);
   registerBlockType(callout.name, callout.settings);
   registerBlockType(card.name, card.settings);
   registerBlockType(contactForm.name, contactForm.settings);

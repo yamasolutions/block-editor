@@ -1,5 +1,5 @@
 .wp-block-table{
-  margin-bottom: $spacer*1.5;
+  margin-bottom: $paragraph-margin-bottom;
   overflow-x: auto;
   table {
     --#{$variable-prefix}table-bg: #{$table-bg};
@@ -11,7 +11,6 @@
     --#{$variable-prefix}table-hover-bg: #{$table-hover-bg};
 
     width: 100%;
-    margin-bottom: $spacer;
     color: $table-color;
     vertical-align: $table-cell-vertical-align;
     border-color: $table-border-color;
@@ -53,6 +52,10 @@
         border-width: 0 $table-border-width;
       }
     }
+  }
+
+  > figcaption {
+    margin-top: $paragraph-margin-bottom / 4;
   }
 
   &.is-style-striped {

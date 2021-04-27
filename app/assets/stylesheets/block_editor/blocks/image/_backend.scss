@@ -1,0 +1,6 @@
+.block-editor-block-list__block[data-type="core/image"] {
+  .block-editor-media-placeholder__url-input-container,
+  .components-form-file-upload {
+    display: none;
+  }
+}
