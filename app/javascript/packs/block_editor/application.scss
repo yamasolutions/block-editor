@@ -32,6 +32,11 @@ $header-height: 50px;
 @import "../../block_editor/components/header/styles";
 @import "../../block_editor/components/block-editor/styles";
 
+.block-editor-block-list__layout.is-root-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .block-editor {
   @include reset;
   position: relative;

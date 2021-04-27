@@ -65,6 +65,7 @@
   // Block editor blocks
   @import "block_editor/blocks/frontend";
   @import "block_editor/blocks/backend";
+  @import "block_editor/utilities";
 
   // Custom blocks & extensions
   @import "block_editor/host_app/blocks/frontend";
