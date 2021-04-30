@@ -1,11 +1,11 @@
 .wp-block-image {
   margin-bottom: $paragraph-margin-bottom;
 
-  > img {
-    margin-bottom: 5px;
+  img {
     max-width: 100%;
   }
   figcaption {
+    margin-top: 5px;
     font-size: 0.9rem;
   }
   &.is-style-padded {
