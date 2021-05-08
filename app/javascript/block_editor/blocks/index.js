@@ -188,8 +188,6 @@ export const registerBlocks = () => {
   unregisterBlockType('core/pullquote');
   unregisterBlockType('core/rss');
   unregisterBlockType('core/search');
-  // unregisterBlockType('core/reusable-block'); // ?
-  // unregisterBlockType('core/reusable'); // ?
   unregisterBlockType('core/social-links');
   unregisterBlockType('core/social-link');
   unregisterBlockType('core/spacer');
