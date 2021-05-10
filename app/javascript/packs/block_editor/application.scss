@@ -57,6 +57,10 @@ $header-height: 50px;
     display: none;
   }
 
+  .block-editor-inserter__manage-reusable-blocks {
+    display: none;
+  }
+
   &:not(.block-editor__fullscreen) {
     .block-editor__size-toggle-button__minimize {
       display: none;
