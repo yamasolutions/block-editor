@@ -36,8 +36,10 @@ import '../../stores'; // TODO: Think this store registering needs to be moved s
 function BlockEditor( { input, settings: _settings } ) {
   const blocks = useSelect((select) => select("block-editor").getBlocks());
   const { updateBlocks } = useDispatch("block-editor");
-  const __experimentalReusableBlocks = useSelect((select) => select( 'core' ).getEntityRecords('postType', 'wp_block'));
+  const __experimentalReusableBlocks = useSelect((select) => select( 'core' ).getEntityRecords('postType', 'wp_block', { per_page: -1 }));
   const settings = { ..._settings, __experimentalReusableBlocks };
+
+  console.log('hello world');
 
   function handleInput(newBlocks, persist) {
     updateBlocks(newBlocks);

@@ -27,7 +27,7 @@ import { addFilter } from '@wordpress/hooks';
  */
 import ColumnEdit from './column/edit';
 import ButtonEdit from './button/edit';
-import ImageEdit from './image/edit';
+// import ImageEdit from './image/edit';
 import MediaUpload from '../components/media-upload';
 
 import * as accordion from './be-accordion';
@@ -68,15 +68,15 @@ export const registerBlocks = () => {
     } );
   }
 
-  const replaceImageBlockEdit = ( settings, name ) => {
-    if ( name !== 'core/image' ) {
-      return settings;
-    }
-
-    return assign( {}, settings, {
-      edit: ImageEdit // Removes ImageSizeControl options
-    } );
-  }
+  // const replaceImageBlockEdit = ( settings, name ) => {
+  //   if ( name !== 'core/image' ) {
+  //     return settings;
+  //   }
+  //
+  //   return assign( {}, settings, {
+  //     edit: ImageEdit // Removes ImageSizeControl options
+  //   } );
+  // }
 
   const withClientIdClassName = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
@@ -117,11 +117,11 @@ export const registerBlocks = () => {
     replaceColumnBlockEdit
   );
 
-  addFilter(
-    'blocks.registerBlockType',
-    'block-editor/filters/core-image',
-    replaceImageBlockEdit
-  );
+  // addFilter(
+  //   'blocks.registerBlockType',
+  //   'block-editor/filters/core-image',
+  //   replaceImageBlockEdit
+  // );
 
   addFilter(
     'editor.MediaUpload',
@@ -143,41 +143,41 @@ export const registerBlocks = () => {
   unregisterBlockType('core/code');
   unregisterBlockType('core/cover');
   unregisterBlockType('core/embed');
-  unregisterBlockType('core-embed/twitter');
-  unregisterBlockType('core-embed/youtube');
-  unregisterBlockType('core-embed/facebook');
-  unregisterBlockType('core-embed/instagram');
-  unregisterBlockType('core-embed/wordpress');
-  unregisterBlockType('core-embed/soundcloud');
-  unregisterBlockType('core-embed/spotify');
-  unregisterBlockType('core-embed/flickr');
-  unregisterBlockType('core-embed/vimeo');
-  unregisterBlockType('core-embed/animoto');
-  unregisterBlockType('core-embed/cloudup');
-  unregisterBlockType('core-embed/collegehumor');
-  unregisterBlockType('core-embed/crowdsignal');
-  unregisterBlockType('core-embed/dailymotion');
-  unregisterBlockType('core-embed/hulu');
-  unregisterBlockType('core-embed/imgur');
-  unregisterBlockType('core-embed/issuu');
-  unregisterBlockType('core-embed/kickstarter');
-  unregisterBlockType('core-embed/meetup-com');
-  unregisterBlockType('core-embed/mixcloud');
-  unregisterBlockType('core-embed/polldaddy');
-  unregisterBlockType('core-embed/reddit');
-  unregisterBlockType('core-embed/reverbnation');
-  unregisterBlockType('core-embed/screencast');
-  unregisterBlockType('core-embed/scribd');
-  unregisterBlockType('core-embed/slideshare');
-  unregisterBlockType('core-embed/smugmug');
-  unregisterBlockType('core-embed/speaker');
-  unregisterBlockType('core-embed/speaker-deck');
-  unregisterBlockType('core-embed/tiktok');
-  unregisterBlockType('core-embed/ted');
-  unregisterBlockType('core-embed/tumblr');
-  unregisterBlockType('core-embed/videopress');
-  unregisterBlockType('core-embed/wordpress-tv');
-  unregisterBlockType('core-embed/amazon-kindle');
+  // unregisterBlockType('core-embed/twitter');
+  // unregisterBlockType('core-embed/youtube');
+  // unregisterBlockType('core-embed/facebook');
+  // unregisterBlockType('core-embed/instagram');
+  // unregisterBlockType('core-embed/wordpress');
+  // unregisterBlockType('core-embed/soundcloud');
+  // unregisterBlockType('core-embed/spotify');
+  // unregisterBlockType('core-embed/flickr');
+  // unregisterBlockType('core-embed/vimeo');
+  // unregisterBlockType('core-embed/animoto');
+  // unregisterBlockType('core-embed/cloudup');
+  // unregisterBlockType('core-embed/collegehumor');
+  // unregisterBlockType('core-embed/crowdsignal');
+  // unregisterBlockType('core-embed/dailymotion');
+  // unregisterBlockType('core-embed/hulu');
+  // unregisterBlockType('core-embed/imgur');
+  // unregisterBlockType('core-embed/issuu');
+  // unregisterBlockType('core-embed/kickstarter');
+  // unregisterBlockType('core-embed/meetup-com');
+  // unregisterBlockType('core-embed/mixcloud');
+  // unregisterBlockType('core-embed/polldaddy');
+  // unregisterBlockType('core-embed/reddit');
+  // unregisterBlockType('core-embed/reverbnation');
+  // unregisterBlockType('core-embed/screencast');
+  // unregisterBlockType('core-embed/scribd');
+  // unregisterBlockType('core-embed/slideshare');
+  // unregisterBlockType('core-embed/smugmug');
+  // unregisterBlockType('core-embed/speaker');
+  // unregisterBlockType('core-embed/speaker-deck');
+  // unregisterBlockType('core-embed/tiktok');
+  // unregisterBlockType('core-embed/ted');
+  // unregisterBlockType('core-embed/tumblr');
+  // unregisterBlockType('core-embed/videopress');
+  // unregisterBlockType('core-embed/wordpress-tv');
+  // unregisterBlockType('core-embed/amazon-kindle');
   unregisterBlockType('core/file');
   unregisterBlockType('core/media-text');
   unregisterBlockType('core/latest-comments');
