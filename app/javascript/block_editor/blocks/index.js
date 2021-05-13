@@ -27,6 +27,7 @@ import { addFilter } from '@wordpress/hooks';
  */
 import ColumnEdit from './column/edit';
 import ButtonEdit from './button/edit';
+import BlockEdit from './block/edit';
 import MediaUpload from '../components/media-upload';
 
 import * as accordion from './be-accordion';
@@ -45,6 +46,16 @@ export const registerBlocks = () => {
 
     return assign( {}, settings, {
       edit: ButtonEdit // Removes border radius panel
+    })
+  }
+
+  const replaceBlockEdit = ( settings, name ) => {
+    if ( name !== 'core/block' ) {
+      return settings;
+    }
+
+    return assign( {}, settings, {
+      edit: BlockEdit // Removes 'convert to regular blocks' toolbar button
     })
   }
 
@@ -75,8 +86,14 @@ export const registerBlocks = () => {
 
   addFilter(
     'editor.BlockListBlock',
-    'block-editor/filters/core-button-block-list',
+    'block-editor/filters/core-image-block-list',
     setDefaultAlignment
+  );
+
+  addFilter(
+    'blocks.registerBlockType',
+    'block-editor/filters/core-block',
+    replaceBlockEdit
   );
 
   addFilter(
