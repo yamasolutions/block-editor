@@ -1,25 +1,9 @@
-$primary-color: #1b8ecf;
-
-@function theme($selector) {
-  @return $primary-color;
-}
-
-@function color($color) {
-  @return $color;
-}
-
 @import "~@wordpress/base-styles/colors";
 @import "~@wordpress/base-styles/variables";
 @import "~@wordpress/base-styles/mixins";
 @import "~@wordpress/base-styles/breakpoints";
 @import "~@wordpress/base-styles/animations";
 @import "~@wordpress/base-styles/z-index";
-
-.block-editor {
-  label {
-    font-size: $default-font-size;
-  }
-}
 
 @import "~@wordpress/components/src/style";
 @import "~@wordpress/block-editor/src/style";
@@ -52,9 +36,31 @@ $header-height: 50px;
     outline: 0;
   }
 
+  label {
+    font-size: $default-font-size;
+  }
+
+  [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+    margin-bottom: 0;
+  }
+
+  @include admin-scheme(#1b8ecf);
+
   .block-editor-url-popover__additional-controls,
   .block-editor-media-replace-flow__options .components-form-file-upload {
     display: none;
+  }
+
+  .components-dropdown-menu__toggle[aria-label="Change alignment"] {
+    display: none !important;
+  }
+
+  .components-toolbar-button[aria-label="Crop"] {
+    display: none !important;
+  }
+
+  .block-editor-block-mover__move-button-container {
+    display: inline-flex;
   }
 
   .block-editor-inserter__manage-reusable-blocks {

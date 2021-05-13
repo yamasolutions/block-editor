@@ -39,8 +39,6 @@ function BlockEditor( { input, settings: _settings } ) {
   const __experimentalReusableBlocks = useSelect((select) => select( 'core' ).getEntityRecords('postType', 'wp_block', { per_page: -1 }));
   const settings = { ..._settings, __experimentalReusableBlocks };
 
-  console.log('hello world');
-
   function handleInput(newBlocks, persist) {
     updateBlocks(newBlocks);
     input.value = serialize(newBlocks);

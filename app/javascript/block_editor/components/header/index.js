@@ -19,6 +19,25 @@ export default function Header() {
 			role="region"
 			tabIndex="-1"
 		>
+      <div>
+        <HistoryUndo />
+        <HistoryRedo />
+        <Button
+          icon={ maximizeIcon }
+          label={ 'Fullscreen' }
+          // shortcut={ displayShortcut.primary( 'x' ) }
+          className="block-editor__size-toggle-button block-editor__size-toggle-button__maximize"
+          onClick={() => document.querySelector('.block-editor').classList.add('block-editor__fullscreen')}
+        />
+        <Button
+          icon={ minimizeIcon }
+          label={ 'Minimize' }
+          // shortcut={ displayShortcut.primary( 'x' ) }
+          className="block-editor__size-toggle-button block-editor__size-toggle-button__minimize"
+          onClick={() => document.querySelector('.block-editor').classList.remove('block-editor__fullscreen')}
+        />
+
+      </div>
 		</div>
 	);
 }
