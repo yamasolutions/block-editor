@@ -6,6 +6,7 @@
 @import "~@wordpress/base-styles/z-index";
 
 @import "~@wordpress/components/src/style";
+@import "~@wordpress/interface/src/style";
 @import "~@wordpress/block-editor/src/style";
 @import "~@wordpress/block-library/src/style";
 
@@ -30,6 +31,7 @@ $header-height: 50px;
   font-size: $default-font-size;
   border: 1px solid #f3f4f5;
   min-height: 500px;
+  overflow-y: hidden;
 
   a,
   div {
@@ -112,12 +114,26 @@ html.wp-toolbar {
   @include reset;
 }
 
-.block-editor-block-breadcrumb {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  background-color: $white;
-  width: 100%;
-  border-top: 1px solid #f3f4f5;
-  padding: 0.5rem 0;
+.interface-interface {
+  &-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    &__footer {
+      position: inherit;
+      .block-editor-block-breadcrumb {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        background-color: $white;
+        width: 100%;
+        border-top: 1px solid #f3f4f5;
+        padding: 1rem 0;
+      }
+    }
+    &__sidebar {
+      width: 280px;
+    }
+  }
 }
