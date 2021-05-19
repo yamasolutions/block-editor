@@ -34,7 +34,7 @@ import * as accordion from './be-accordion';
 import * as callout from './be-alert';
 import * as card from './be-card';
 import * as cover from './be-cover';
-// import * as recentPosts from './recent-posts';
+import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
 
 export const registerBlocks = () => {
@@ -219,7 +219,7 @@ export const registerBlocks = () => {
   registerBlockType(card.name, card.settings);
   registerBlockType(contactForm.name, contactForm.settings);
   registerBlockType(cover.name, cover.settings);
-  // registerBlockType(recentPosts.name, recentPosts.settings);
+  registerBlockType(recentPosts.name, recentPosts.settings);
 
   // Register custom block styles
   registerBlockStyle( 'core/button', {
