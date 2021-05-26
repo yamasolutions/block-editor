@@ -30,7 +30,7 @@ $header-height: 50px;
   font-family: $default-font;
   font-size: $default-font-size;
   border: 1px solid #f3f4f5;
-  min-height: 500px;
+  height: 500px;
   overflow-y: hidden;
 
   a,
@@ -97,6 +97,7 @@ $header-height: 50px;
     padding: 0;
     z-index: 99;
     margin: 0;
+    height: unset;
     .block-editor {
       height: 100%;
     }
