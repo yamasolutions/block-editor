@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
 @import "~@wordpress/base-styles/colors";
 @import "~@wordpress/base-styles/variables";
 @import "~@wordpress/base-styles/mixins";
@@ -27,8 +29,9 @@ $header-height: 50px;
   position: relative;
   margin: 1rem 0;
   padding: 0;
-  font-family: $default-font;
-  font-size: $default-font-size;
+  font-family: $editor-font;
+  font-size: $editor-font-size;
+  line-height: $editor-line-height;
   border: 1px solid #f3f4f5;
   height: 500px;
   overflow-y: hidden;
@@ -39,6 +42,11 @@ $header-height: 50px;
   }
 
   label {
+    font-size: $default-font-size;
+  }
+
+  .editor-styles-wrapper {
+    font-family: $default-font;
     font-size: $default-font-size;
   }
 
