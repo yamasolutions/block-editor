@@ -9,7 +9,7 @@ module BlockEditor
     def self.render(raw_html)
       html = Nokogiri::HTML(raw_html)
 
-      # # Find & render all instances of a dynamic block
+      # Find & render all instances of a dynamic block (including reusable blocks)
       BlockEditor.dynamic_blocks.each do |dynamic_block|
         dynamic_block = dynamic_block.constantize
         html.xpath('//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{dynamic_block.name}") }.each do |block_instance|
@@ -42,3 +42,5 @@ module BlockEditor
     end
   end
 end
+
+

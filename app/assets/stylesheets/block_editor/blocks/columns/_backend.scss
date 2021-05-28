@@ -1,0 +1,6 @@
+.block-editor-block-list__block[data-type="core/columns"] {
+  > .block-editor-inner-blocks {
+    flex: 1;
+    margin: 0 $spacer;
+  }
+}

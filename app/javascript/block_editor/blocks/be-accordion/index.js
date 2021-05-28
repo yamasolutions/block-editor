@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { InnerBlocks, InspectorControls, PlainText } from '@wordpress/block-editor'
+import { box as icon } from '@wordpress/icons';
 
 const name = 'be/accordion';
 
@@ -12,7 +13,7 @@ export { name };
 export const settings = {
 	title: 'Accordion',
 	description:  'Accordions are elements that help you organize and navigate multiple documents in a single container. to help draw attention to content.',
-  icon: 'list-view',
+  icon,
   category: 'layout',
   attributes: {
     blockId: {

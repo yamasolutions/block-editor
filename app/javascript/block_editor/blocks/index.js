@@ -27,7 +27,7 @@ import { addFilter } from '@wordpress/hooks';
  */
 import ColumnEdit from './column/edit';
 import ButtonEdit from './button/edit';
-import ImageEdit from './image/edit';
+import BlockEdit from './block/edit';
 import MediaUpload from '../components/media-upload';
 
 import * as accordion from './be-accordion';
@@ -38,24 +38,25 @@ import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
 
 export const registerBlocks = () => {
+  // TODO: Remove this when upgrading to 10.5 -> https://github.com/WordPress/gutenberg/pull/30194
   const replaceButtonBlockEdit = ( settings, name ) => {
     if ( name !== 'core/button' ) {
       return settings;
     }
 
     return assign( {}, settings, {
-      edit: ButtonEdit, // Removes & replaces some styling options
-      attributes: assign( {}, settings.attributes, {
-        hasHollowStyle: {
-          type: 'boolean',
-          default: false
-        },
-        hasLargeStyle: {
-          type: 'boolean',
-          default: false
-        }
-      })
-    } );
+      edit: ButtonEdit // Removes border radius panel
+    })
+  }
+
+  const replaceBlockEdit = ( settings, name ) => {
+    if ( name !== 'core/block' ) {
+      return settings;
+    }
+
+    return assign( {}, settings, {
+      edit: BlockEdit // Removes 'convert to regular blocks' toolbar button
+    })
   }
 
   const replaceColumnBlockEdit = ( settings, name ) => {
@@ -68,41 +69,31 @@ export const registerBlocks = () => {
     } );
   }
 
-  const replaceImageBlockEdit = ( settings, name ) => {
-    if ( name !== 'core/image' ) {
-      return settings;
-    }
-
-    return assign( {}, settings, {
-      edit: ImageEdit // Removes ImageSizeControl options
-    } );
-  }
-
-  const withClientIdClassName = createHigherOrderComponent( ( BlockListBlock ) => {
+  // Set default alignment to 'full' for all images
+  const setDefaultAlignment = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
-      if ( props.name !== 'core/button' ) {
+      if ( props.name !== 'core/image' ) {
         return <BlockListBlock { ...props } />;
       }
 
-      let classNames = '';
-      if (props.attributes.hasLargeStyle) {
-        classNames = classnames( classNames, 'large' );
-      }
+      props.attributes.align = 'full';
 
-      if (props.attributes.hasHollowStyle) {
-        classNames = classnames( classNames, 'is-style-hollow' );
-      }
-
-      return <BlockListBlock { ...props } className={ classNames } />;
+      return <BlockListBlock { ...props } />;
     };
-  }, 'withClientIdClassName' );
+  }, 'setDefaultAlignment' );
 
   const replaceMediaUpload = () => MediaUpload;
 
   addFilter(
     'editor.BlockListBlock',
-    'block-editor/filters/core-button-block-list',
-    withClientIdClassName
+    'block-editor/filters/core-image-block-list',
+    setDefaultAlignment
+  );
+
+  addFilter(
+    'blocks.registerBlockType',
+    'block-editor/filters/core-block',
+    replaceBlockEdit
   );
 
   addFilter(
@@ -115,12 +106,6 @@ export const registerBlocks = () => {
     'blocks.registerBlockType',
     'block-editor/filters/core-column',
     replaceColumnBlockEdit
-  );
-
-  addFilter(
-    'blocks.registerBlockType',
-    'block-editor/filters/core-image',
-    replaceImageBlockEdit
   );
 
   addFilter(
@@ -143,41 +128,6 @@ export const registerBlocks = () => {
   unregisterBlockType('core/code');
   unregisterBlockType('core/cover');
   unregisterBlockType('core/embed');
-  unregisterBlockType('core-embed/twitter');
-  unregisterBlockType('core-embed/youtube');
-  unregisterBlockType('core-embed/facebook');
-  unregisterBlockType('core-embed/instagram');
-  unregisterBlockType('core-embed/wordpress');
-  unregisterBlockType('core-embed/soundcloud');
-  unregisterBlockType('core-embed/spotify');
-  unregisterBlockType('core-embed/flickr');
-  unregisterBlockType('core-embed/vimeo');
-  unregisterBlockType('core-embed/animoto');
-  unregisterBlockType('core-embed/cloudup');
-  unregisterBlockType('core-embed/collegehumor');
-  unregisterBlockType('core-embed/crowdsignal');
-  unregisterBlockType('core-embed/dailymotion');
-  unregisterBlockType('core-embed/hulu');
-  unregisterBlockType('core-embed/imgur');
-  unregisterBlockType('core-embed/issuu');
-  unregisterBlockType('core-embed/kickstarter');
-  unregisterBlockType('core-embed/meetup-com');
-  unregisterBlockType('core-embed/mixcloud');
-  unregisterBlockType('core-embed/polldaddy');
-  unregisterBlockType('core-embed/reddit');
-  unregisterBlockType('core-embed/reverbnation');
-  unregisterBlockType('core-embed/screencast');
-  unregisterBlockType('core-embed/scribd');
-  unregisterBlockType('core-embed/slideshare');
-  unregisterBlockType('core-embed/smugmug');
-  unregisterBlockType('core-embed/speaker');
-  unregisterBlockType('core-embed/speaker-deck');
-  unregisterBlockType('core-embed/tiktok');
-  unregisterBlockType('core-embed/ted');
-  unregisterBlockType('core-embed/tumblr');
-  unregisterBlockType('core-embed/videopress');
-  unregisterBlockType('core-embed/wordpress-tv');
-  unregisterBlockType('core-embed/amazon-kindle');
   unregisterBlockType('core/file');
   unregisterBlockType('core/media-text');
   unregisterBlockType('core/latest-comments');
@@ -188,8 +138,6 @@ export const registerBlocks = () => {
   unregisterBlockType('core/pullquote');
   unregisterBlockType('core/rss');
   unregisterBlockType('core/search');
-  // unregisterBlockType('core/reusable-block'); // ?
-  // unregisterBlockType('core/reusable'); // ?
   unregisterBlockType('core/social-links');
   unregisterBlockType('core/social-link');
   unregisterBlockType('core/spacer');

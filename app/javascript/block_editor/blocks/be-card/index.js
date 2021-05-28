@@ -10,6 +10,7 @@ import { rawHandler } from '@wordpress/blocks';
 
 import { TextControl, PanelBody, ToggleControl, Button } from '@wordpress/components';
 import { InspectorControls, RichText, MediaUpload, PlainText } from '@wordpress/block-editor'
+import { box as icon } from '@wordpress/icons';
 
 const name = 'be/card';
 
@@ -18,7 +19,7 @@ export { name };
 export const settings = {
 	title: 'Card',
 	description:  'Group a piece of content in an eye catching container.',
-  icon: 'id-alt',
+  icon,
   category: 'formatting',
   // example: {
   //   innerBlocks: [

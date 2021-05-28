@@ -9,7 +9,14 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 -
 
 ### Added
--
+- Reusable Blocks
+- Base styles for all blocks - this is using Bootstrap styles which adds a soft dependancy on the framework
+- Accordion block
+- Alert (callout) block
+- Card block
+- Cover block
+- Contact Form block
+- Keyboard shortcuts
 
 ### Fixed
 -

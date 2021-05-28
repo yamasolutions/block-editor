@@ -1,12 +1,4 @@
-$primary-color: #1b8ecf;
-
-@function theme($selector) {
-  @return $primary-color;
-}
-
-@function color($color) {
-  @return $color;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
 @import "~@wordpress/base-styles/colors";
 @import "~@wordpress/base-styles/variables";
@@ -15,13 +7,8 @@ $primary-color: #1b8ecf;
 @import "~@wordpress/base-styles/animations";
 @import "~@wordpress/base-styles/z-index";
 
-.block-editor {
-  label {
-    font-size: $default-font-size;
-  }
-}
-
 @import "~@wordpress/components/src/style";
+@import "~@wordpress/interface/src/style";
 @import "~@wordpress/block-editor/src/style";
 @import "~@wordpress/block-library/src/style";
 
@@ -42,18 +29,51 @@ $header-height: 50px;
   position: relative;
   margin: 1rem 0;
   padding: 0;
-  font-family: $default-font;
-  font-size: $default-font-size;
+  font-family: $editor-font;
+  font-size: $editor-font-size;
+  line-height: $editor-line-height;
   border: 1px solid #f3f4f5;
-  min-height: 500px;
+  height: 500px;
+  overflow-y: hidden;
 
   a,
   div {
     outline: 0;
   }
 
+  label {
+    font-size: $default-font-size;
+  }
+
+  .editor-styles-wrapper {
+    font-family: $default-font;
+    font-size: $default-font-size;
+  }
+
+  [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+    margin-bottom: 0;
+  }
+
+  @include admin-scheme(#1b8ecf);
+
   .block-editor-url-popover__additional-controls,
   .block-editor-media-replace-flow__options .components-form-file-upload {
+    display: none;
+  }
+
+  .components-dropdown-menu__toggle[aria-label="Change alignment"] {
+    display: none !important;
+  }
+
+  .components-toolbar-button[aria-label="Crop"] {
+    display: none !important;
+  }
+
+  .block-editor-block-mover__move-button-container {
+    display: inline-flex;
+  }
+
+  .block-editor-inserter__manage-reusable-blocks {
     display: none;
   }
 
@@ -85,6 +105,7 @@ $header-height: 50px;
     padding: 0;
     z-index: 99;
     margin: 0;
+    height: unset;
     .block-editor {
       height: 100%;
     }
@@ -102,12 +123,26 @@ html.wp-toolbar {
   @include reset;
 }
 
-.block-editor-block-breadcrumb {
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-  background-color: $white;
-  width: 100%;
-  border-top: 1px solid #f3f4f5;
-  padding: 0.5rem 0;
+.interface-interface {
+  &-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    &__footer {
+      position: inherit;
+      .block-editor-block-breadcrumb {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        background-color: $white;
+        width: 100%;
+        border-top: 1px solid #f3f4f5;
+        padding: 1rem 0;
+      }
+    }
+    &__sidebar {
+      width: 280px;
+    }
+  }
 }

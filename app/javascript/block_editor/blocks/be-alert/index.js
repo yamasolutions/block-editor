@@ -7,6 +7,7 @@ import {
 import { registerBlockStyle } from '@wordpress/blocks';
 import { createBlock } from '@wordpress/blocks';
 import { rawHandler } from '@wordpress/blocks';
+import { box as icon } from '@wordpress/icons';
 
 const name = 'be/alert';
 
@@ -15,7 +16,7 @@ export { name };
 export const settings = {
 	title: 'Callout (Alert)',
 	description:  'Container to help draw attention to content.',
-  icon: 'align-center',
+  icon,
   category: 'formatting',
 	styles: [
 		{ name: 'primary', label: 'Primary', isDefault: true },
