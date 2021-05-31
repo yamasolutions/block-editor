@@ -7,20 +7,23 @@ module BlockEditor
     #
     # @return [String] Parsed content
     def self.render(raw_html)
-      html = Nokogiri::HTML(raw_html)
+      html = Nokogiri::HTML::DocumentFragment.parse(raw_html)
 
       # Find & render all instances of a dynamic block (including reusable blocks)
       BlockEditor.dynamic_blocks.each do |dynamic_block|
         dynamic_block = dynamic_block.constantize
-        html.xpath('//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{dynamic_block.name}") }.each do |block_instance|
+
+        html.search('.//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{dynamic_block.name}") }.each do |block_instance|
           block_attributes = block_instance.inner_text.split(" wp:#{dynamic_block.name}")[1][0...-1]
           block_attributes = block_attributes.blank? ? {} : JSON.parse(block_attributes)
-          block_instance.replace(render_block(dynamic_block, block_attributes))
+          block_content = render_block(dynamic_block, block_attributes)
+
+          block_instance.replace(block_content)
         end
       end
 
-      html.xpath('//comment()').remove
-      html.css('body').inner_html.html_safe
+      html.search('.//comment()').remove
+      html.to_s.html_safe
     end
 
     # Renders a specific block using the provided options
