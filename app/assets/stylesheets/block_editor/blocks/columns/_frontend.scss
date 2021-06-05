@@ -1,0 +1,10 @@
+.wp-block-columns {
+  margin: $spacer*1.20 0;
+  display: flex;
+
+  &:not(.is-style-no-stack) {
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+  }
+}

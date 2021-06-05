@@ -16,14 +16,21 @@ export default class extends Controller {
 
   connect() {
     const settings = {
-      imageSizes: false,
-      disableCustomFontSizes: true,
-      fontSizes: false,
-      disableCustomColors: true,
-      colors: false,
-      disableCustomGradients: true,
-      __experimentalDisableDropCap: true,
-      __experimentalDisableCustomLineHeight: true,
+      alignWide: true,
+      __experimentalFeatures: {
+        global: {
+          color: {
+            custom: false,
+            palette: [],
+            gradients: []
+          },
+          typography: {
+            dropCap: false,
+            fontSizes: false,
+            customLineHeight: false
+          }
+        }
+      },
       mediaUpload:  function uploadMedia( {
         allowedTypes,
         additionalData = {},

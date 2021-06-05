@@ -1,0 +1,19 @@
+.wp-block-separator {
+  &.is-style-dots {
+    background: none !important;
+    border: none;
+    text-align: center;
+    max-width: none;
+    line-height: 1;
+    height: 1.2*$spacer !important;
+    opacity: 1;
+    &:before{
+      content: "\00b7 \00b7 \00b7";
+      font-size: 1.2*$spacer;
+      letter-spacing: 2em;
+      padding-left: 2em;
+      font-family: serif;
+      color: $black;
+    }
+  }
+}

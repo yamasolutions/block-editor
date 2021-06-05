@@ -19,9 +19,7 @@ export default function Header() {
 			role="region"
 			tabIndex="-1"
 		>
-      <NavigableToolbar
-        className="edit-post-header-toolbar"
-      >
+      <div>
         <HistoryUndo />
         <HistoryRedo />
         <Button
@@ -39,7 +37,7 @@ export default function Header() {
           onClick={() => document.querySelector('.block-editor').classList.remove('block-editor__fullscreen')}
         />
 
-      </NavigableToolbar>
+      </div>
 		</div>
 	);
 }

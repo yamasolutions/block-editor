@@ -1,0 +1,8 @@
+.block-editor-block-list__block[data-type="be/cover"] {
+  .components-button {
+    position: absolute;
+    background-color: $primary;
+    color: $white;
+    z-index: 1;
+  }
+}
