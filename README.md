@@ -74,26 +74,32 @@ Note: You may also need to specifically set the listable attribute within your c
 
 ### Styling
 
-Add the frontend stylesheet where you are displaying the user created block lists;
+BlockEditor has a soft dependency on Bootstrap. You will need to add this to your application in order for the default styles to be compiled. If you do not want to use the default styles do not include them in the your application stylesheet and override BlockEditor's backend stylesheet (`block_editor/frontend.scss`) with whatever custom styles you want to include.
+
+#### Frontend
+Include the default styles into your application stylesheet;
 ```
-<%= stylesheet_link_tag 'block_editor/backend', media: 'all', 'data-turbolinks-track': 'reload' %>
+  @import "block_editor/blocks/frontend";
+  @import "block_editor/utilities";
 ```
 
+### Backend
 Add the backend stylesheet where you are rendering the block editor, for example admin dashboard;
 ```
 <%= stylesheet_link_tag 'block_editor/backend', media: 'all', 'data-turbolinks-track': 'reload' %>
 ```
 
-The below files should be overridden within your application in order to style your blocks;
-* `app/assets/stylesheets/block_editor/frontend/blocks.scss` - Any styles that should be displayed within the frontend and backend
-* `app/assets/stylesheets/block_editor/backend/blocks.scss` - Any styles that should _only_ be displayed within the block editor itself, i.e when creating or editing the blocks
+### Overriding and/or adding custom styles
+The below files are provided by BlockEditor as entry points. Override them if you want to provide custom styling to your blocks;
+* `app/assets/stylesheets/block_editor/host_app/blocks/_frontend.scss` - Any styles that should be displayed within the frontend and backend
+* `app/assets/stylesheets/block_editor/host_app/blocks/_backend.scss` - Any styles that should _only_ be displayed within the block editor itself, i.e when creating or editing the blocks
 
-### MediaUploader & Images
+### Media Uploader & Images
 There is no built in MediaUploader or media gallery, it is up to the host application to implement this.
 
-When the media uploader is requested the Block Editor checks if `window.MediaUploader` is defined. If it is defined the block editor will call `window.MediaUploader.open(callback)`, otherwise it will randomly select an image from [Unsplash](https://unsplash.com)
+When the media uploader is requested the Block Editor checks if `window.BlockEditorMediaUploader` is defined. If it is defined the block editor will call `window.BlockEditorMediaUploader.open(callback)`, otherwise it will randomly select an image from [Unsplash](https://unsplash.com)
 
-When an image is successfully uploaded or selected the MediaUploader instance should call the callback which was passed into the `open` function;
+When an image is successfully uploaded or selected the BlockEditorMediaUploader instance should call the callback which was passed into the `open` function;
 ```
 callback({url: imageUrl})
 ```
@@ -103,6 +109,19 @@ Currently Block Editor is not compatible with Turbolinks as history is only bein
 ```
 <meta name="turbolinks-visit-control" content="reload">
 ```
+
+### Reusable Blocks
+
+BlockEditor will check the following endpoints for any available reusable blocks, if any are found they will appear in the inserter menus
+```
+    get '/wp/v2/types', to: 'backend/block_lists#wp_types'
+    get '/wp/v2/types/wp_block', to: 'backend/block_lists#wp_type'
+    get '/wp/v2/block_lists', to: 'backend/block_lists#block_lists'
+    get '/wp/v2/block_list/:id', to: 'backend/block_lists#show'
+    get '/wp/v2/blocks/:id', to: 'backend/block_lists#show'
+```
+
+For an example of what the BlockEditor is expecting from these endpoints checkout how [Integral CMS has implemented this](https://github.com/yamasolutions/integral/blob/master/app/controllers/integral/backend/block_lists_controller.rb)
 
 ### Adding/Removing blocks
 *Currently there isn't a way of adding or removing blocks without forking the gem.*
@@ -124,9 +143,9 @@ A dynamic block is made up of 4 components;
 
 1. Create block class which can be as simple as;
 ```
-class ContactForm < BlockEditor::Base
+class RecentPosts < BlockEditor::Base
   def self.name
-    'block-editor/contact-form'
+    'block-editor/recent-posts'
   end
 end
 ```
@@ -134,11 +153,11 @@ end
 ```
 // application.rb
 
-BlockEditor.dynamic_blocks = [ContactForm]
+BlockEditor.dynamic_blocks = [RecentPosts]
 ```
 3. Create the view partial you want to be rendered as the block;
 ```
-// app/views/block_editor/blocks/block-editor/contact-form/_block.html.erb
+// app/views/block_editor/blocks/block-editor/recent-posts/_block.html.erb
 
 My Recent Posts
 <%= @posts %>
@@ -146,11 +165,11 @@ My Recent Posts
 4. Add any required styling to the frontend and backend stylesheets;
 
 ```
-app/assets/stylesheets/block_editor/backend/blocks.scss
+app/assets/stylesheets/block_editor/host_app/blocks/_frontend.scss
 ```
 
 ```
-app/assets/stylesheets/block_editor/frontend/blocks.scss
+app/assets/stylesheets/block_editor/host_app/blocks/_backend.scss
 ```
 5. Add the block to the block editor
 * Fork the gem

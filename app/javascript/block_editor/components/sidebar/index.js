@@ -19,9 +19,7 @@ function Sidebar() {
 			aria-label={ __( 'Standalone Block Editor advanced settings.' ) }
 			tabIndex="-1"
 		>
-			<Panel header={ __( 'Inspector' ) }>
-				<InspectorSlot bubblesVirtually />
-			</Panel>
+      <InspectorSlot bubblesVirtually />
 		</div>
 	);
 }

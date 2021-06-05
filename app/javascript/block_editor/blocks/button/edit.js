@@ -207,19 +207,6 @@ function ButtonEdit( props ) {
 				onToggleOpenInNewTab={ onToggleOpenInNewTab }
 			/>
 			<InspectorControls>
-				<PanelBody title={ 'Additional styles' }>
-					<ToggleControl
-						label={ 'Hollow' }
-            onChange={ content => setAttributes({ hasHollowStyle: content }) }
-            checked={ attributes.hasHollowStyle }
-					/>
-					<ToggleControl
-						label={ 'Large' }
-            onChange={ content => setAttributes({ hasLargeStyle: content }) }
-            checked={ attributes.hasLargeStyle }
-					/>
-				</PanelBody>
-
 				<PanelBody title={ __( 'Link settings' ) }>
 					<ToggleControl
 						label={ __( 'Open in new tab' ) }

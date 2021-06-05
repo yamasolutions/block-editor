@@ -8,7 +8,7 @@ import '@wordpress/format-library';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useState, useMemo } from '@wordpress/element';
 import { serialize, parse } from '@wordpress/blocks';
-import { InterfaceSkeleton as EditorSkeleton } from '@wordpress/interface';
+import { InterfaceSkeleton, FullscreenMode } from '@wordpress/interface';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import {
   BlockEditorKeyboardShortcuts,
@@ -24,6 +24,7 @@ import {
   Popover,
   SlotFillProvider,
   DropZoneProvider,
+  FocusReturnProvider
 } from '@wordpress/components';
 
 /**
@@ -37,6 +38,8 @@ import '../../stores'; // TODO: Think this store registering needs to be moved s
 function BlockEditor( { input, settings: _settings } ) {
   const blocks = useSelect((select) => select("block-editor").getBlocks());
   const { updateBlocks } = useDispatch("block-editor");
+  const __experimentalReusableBlocks = useSelect((select) => select( 'core' ).getEntityRecords('postType', 'wp_block', { per_page: -1 }));
+  const settings = { ..._settings, __experimentalReusableBlocks };
 
   function handleInput(newBlocks, persist) {
     updateBlocks(newBlocks);
@@ -93,43 +96,45 @@ function BlockEditor( { input, settings: _settings } ) {
   );
 
   return (
-    <SlotFillProvider>
-      <DropZoneProvider>
-        <EditorSkeleton
-          leftSidebar={ <Library /> }
-          sidebar={<Sidebar />}
-          content={
-            <>
-            <Notices />
-            <BlockEditorProvider
-              value={ blocks }
-              onInput={ handleInput }
-              onChange={ handleChange }
-              settings={ _settings }
-            >
-              <Header />
-              <BlockBreadcrumb />
-              <Sidebar.InspectorFill>
-                <BlockInspector />
-              </Sidebar.InspectorFill>
-              <div className="block-editor__inner-wrapper">
-                <BlockEditorKeyboardShortcuts.Register />
-                <BlockEditorKeyboardShortcuts />
-                <WritingFlow>
-                  <ObserveTyping>
-                    <BlockList className="editor-styles-wrapper" />
-                  </ObserveTyping>
-                </WritingFlow>
-              </div>
-            </BlockEditorProvider>
-            </>
-          }
-        />
-        <Popover.Slot />
-      </DropZoneProvider>
-    </SlotFillProvider>
+    <>
+      <FullscreenMode isActive={false} />
+      <SlotFillProvider>
+        <DropZoneProvider>
+          <BlockEditorProvider
+            value={ blocks }
+            onInput={ handleInput }
+            onChange={ handleChange }
+            settings={ settings }
+          >
+            <FocusReturnProvider>
+              <InterfaceSkeleton
+                header={<Header />}
+                footer={<BlockBreadcrumb />}
+                sidebar={<Sidebar />}
+                leftSidebar={ <Library /> }
+                content={
+                  <>
+                    <Notices />
+                    <Sidebar.InspectorFill>
+                      <BlockInspector />
+                    </Sidebar.InspectorFill>
+                    <BlockEditorKeyboardShortcuts.Register />
+                    <BlockEditorKeyboardShortcuts />
+                    <WritingFlow>
+                      <ObserveTyping>
+                        <BlockList className="editor-styles-wrapper" />
+                      </ObserveTyping>
+                    </WritingFlow>
+                  </>
+                }
+              />
+              <Popover.Slot />
+            </FocusReturnProvider>
+          </BlockEditorProvider>
+        </DropZoneProvider>
+      </SlotFillProvider>
+    </>
   );
 }
 
 export default BlockEditor;
-

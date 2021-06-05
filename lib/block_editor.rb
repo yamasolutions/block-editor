@@ -3,6 +3,8 @@ require "block_editor/engine"
 
 require "block_editor/instance"
 require 'block_editor/blocks/base'
+require 'block_editor/blocks/contact_form'
+require 'block_editor/blocks/reusable'
 require 'block_editor/block_list_renderer'
 
 module BlockEditor
@@ -18,7 +20,7 @@ module BlockEditor
   end
 
   mattr_accessor :dynamic_blocks
-  @@dynamic_blocks = []
+  @@dynamic_blocks = ['BlockEditor::Blocks::Reusable', 'BlockEditor::Blocks::ContactForm']
 
   mattr_accessor :frontend_parent_controller
   @@frontend_parent_controller = 'ApplicationController'
