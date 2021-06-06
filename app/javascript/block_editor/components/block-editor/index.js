@@ -24,8 +24,10 @@ import {
   Popover,
   SlotFillProvider,
   DropZoneProvider,
-  FocusReturnProvider
+  FocusReturnProvider,
+  Button
 } from '@wordpress/components';
+import { close } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -33,6 +35,7 @@ import {
 import Sidebar from '../sidebar';
 import Header from '../header';
 import Notices from '../notices';
+import PopoverWrapper from './popover-wrapper';
 import '../../stores'; // TODO: Think this store registering needs to be moved somewhere else so that it happens everytime a BlockEditor is initialized
 
 function BlockEditor( { input, settings: _settings } ) {
@@ -95,6 +98,13 @@ function BlockEditor( { input, settings: _settings } ) {
     { bindGlobal: true }
   );
 
+  // const isInserterOpened = useSelect((select) => select("core/edit-post").isInserterOpened());
+  // const { setIsInserterOpened } = useDispatch( 'core/edit-post' );
+
+  const { setIsInserterOpened } = useDispatch( 'block-editor' );
+  const isInserterOpened = useSelect((select) => select("block-editor").isInserterOpened());
+  console.log(isInserterOpened);
+
   return (
     <>
       <FullscreenMode isActive={false} />
@@ -112,9 +122,28 @@ function BlockEditor( { input, settings: _settings } ) {
                 footer={<BlockBreadcrumb />}
                 sidebar={<Sidebar />}
                 leftSidebar={
-                  <Library
-                    showInserterHelpPanel={true}
-                  />
+                  isInserterOpened && (
+                    <PopoverWrapper
+                      className="edit-post-layout__inserter-panel-popover-wrapper"
+                      onClose={ () => setIsInserterOpened( false ) }
+                    >
+                      <div className="edit-post-layout__inserter-panel">
+                        <div className="edit-post-layout__inserter-panel-header">
+                          <Button
+                            icon={ close }
+                            onClick={ () =>
+                              setIsInserterOpened( false )
+                            }
+                          />
+                        </div>
+                        <div className="edit-post-layout__inserter-panel-content">
+                          <Library
+                            showInserterHelpPanel={true}
+                          />
+                        </div>
+                      </div>
+                    </PopoverWrapper>
+                  )
                 }
                 content={
                   <>
