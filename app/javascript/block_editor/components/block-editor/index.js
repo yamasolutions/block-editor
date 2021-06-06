@@ -111,7 +111,11 @@ function BlockEditor( { input, settings: _settings } ) {
                 header={<Header />}
                 footer={<BlockBreadcrumb />}
                 sidebar={<Sidebar />}
-                leftSidebar={ <Library /> }
+                leftSidebar={
+                  <Library
+                    showInserterHelpPanel={true}
+                  />
+                }
                 content={
                   <>
                     <Notices />
