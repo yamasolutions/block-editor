@@ -49,8 +49,3 @@ export const settings = {
     return <div role="alert" className='alert'><InnerBlocks.Content /></div>;
   }
 };
-
-
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>

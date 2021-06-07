@@ -12,7 +12,7 @@ export { name };
 
 export const settings = {
 	title: 'Accordion',
-	description:  'Accordions are elements that help you organize and navigate multiple documents in a single container. to help draw attention to content.',
+	description:  'Accordions are elements that help you organize and navigate multiple documents in a single container.',
   icon,
   category: 'layout',
   attributes: {
@@ -27,6 +27,19 @@ export const settings = {
       type: 'boolean',
       default: true
     }
+  },
+  example: {
+    attributes: {
+      title: 'Open by default accordion'
+    },
+    innerBlocks: [
+      {
+        name: 'core/paragraph',
+        attributes: {
+          content: 'Use an accordion to structure and optionally collapse content'
+        }
+      }
+    ]
   },
   edit({clientId, attributes, className, setAttributes, isSelected}) {
     const { blockId } = attributes;

@@ -56,6 +56,10 @@ $header-height: 50px;
 
   @include admin-scheme(#1b8ecf);
 
+  .block-editor-inserter__main-area {
+    padding-bottom: 2rem;
+  }
+
   .block-editor-url-popover__additional-controls,
   .block-editor-media-replace-flow__options .components-form-file-upload {
     display: none;

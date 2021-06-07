@@ -18,12 +18,14 @@ import {
   WritingFlow,
   ObserveTyping,
   BlockBreadcrumb,
+  __experimentalLibrary as Library,
 } from '@wordpress/block-editor';
 import {
   Popover,
   SlotFillProvider,
   DropZoneProvider,
-  FocusReturnProvider
+  FocusReturnProvider,
+  Button
 } from '@wordpress/components';
 
 /**
@@ -32,6 +34,7 @@ import {
 import Sidebar from '../sidebar';
 import Header from '../header';
 import Notices from '../notices';
+import PopoverWrapper from './popover-wrapper';
 import '../../stores'; // TODO: Think this store registering needs to be moved somewhere else so that it happens everytime a BlockEditor is initialized
 
 function BlockEditor( { input, settings: _settings } ) {
@@ -94,6 +97,9 @@ function BlockEditor( { input, settings: _settings } ) {
     { bindGlobal: true }
   );
 
+  const { setIsInserterOpened } = useDispatch( 'block-editor' );
+  const isInserterOpened = useSelect((select) => select("block-editor").isInserterOpened());
+
   return (
     <>
       <FullscreenMode isActive={false} />
@@ -110,6 +116,21 @@ function BlockEditor( { input, settings: _settings } ) {
                 header={<Header />}
                 footer={<BlockBreadcrumb />}
                 sidebar={<Sidebar />}
+                leftSidebar={
+                  isInserterOpened && (
+                    <PopoverWrapper
+                      onClose={ () => setIsInserterOpened( false ) }
+                    >
+                      <div>
+                        <div>
+                          <Library
+                            showInserterHelpPanel={true}
+                          />
+                        </div>
+                      </div>
+                    </PopoverWrapper>
+                  )
+                }
                 content={
                   <>
                     <Notices />

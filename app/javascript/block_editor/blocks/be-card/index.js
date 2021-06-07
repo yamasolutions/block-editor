@@ -21,16 +21,12 @@ export const settings = {
 	description:  'Group a piece of content in an eye catching container.',
   icon,
   category: 'formatting',
-  // example: {
-  //   innerBlocks: [
-  //     {
-  //       name: 'core/paragraph',
-  //       attributes: {
-  //         content: 'Use a callout to grab the users attention.'
-  //       }
-  //     }
-  //   ]
-  // },
+  example: {
+    attributes: {
+      title: 'Container example',
+      imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+    }
+  },
   attributes: {
     title: {
       source: 'text',
