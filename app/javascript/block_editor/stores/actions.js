@@ -6,6 +6,18 @@ import {
 } from "./action-types";
 import { ActionCreators as ReduxUndo } from "redux-undo";
 
+/**
+ * Returns an action object used to open/close the inserter.
+ *
+ * @param {boolean} value A boolean representing whether the inserter should be opened or closed.
+ * @return {Object} Action object.
+ */
+export function setIsInserterOpened( value ) {
+	return {
+		type: 'SET_IS_INSERTER_OPENED',
+		value,
+	};
+}
 
 export function undo() {
 	return ReduxUndo.undo();
