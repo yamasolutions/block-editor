@@ -27,7 +27,6 @@ import {
   FocusReturnProvider,
   Button
 } from '@wordpress/components';
-import { close } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -98,12 +97,8 @@ function BlockEditor( { input, settings: _settings } ) {
     { bindGlobal: true }
   );
 
-  // const isInserterOpened = useSelect((select) => select("core/edit-post").isInserterOpened());
-  // const { setIsInserterOpened } = useDispatch( 'core/edit-post' );
-
   const { setIsInserterOpened } = useDispatch( 'block-editor' );
   const isInserterOpened = useSelect((select) => select("block-editor").isInserterOpened());
-  console.log(isInserterOpened);
 
   return (
     <>
@@ -124,19 +119,10 @@ function BlockEditor( { input, settings: _settings } ) {
                 leftSidebar={
                   isInserterOpened && (
                     <PopoverWrapper
-                      className="edit-post-layout__inserter-panel-popover-wrapper"
                       onClose={ () => setIsInserterOpened( false ) }
                     >
-                      <div className="edit-post-layout__inserter-panel">
-                        <div className="edit-post-layout__inserter-panel-header">
-                          <Button
-                            icon={ close }
-                            onClick={ () =>
-                              setIsInserterOpened( false )
-                            }
-                          />
-                        </div>
-                        <div className="edit-post-layout__inserter-panel-content">
+                      <div>
+                        <div>
                           <Library
                             showInserterHelpPanel={true}
                           />

@@ -1,7 +1,7 @@
 import { createRegistrySelector } from '@wordpress/data';
 
 export const getBlocks = ( state ) => {
-	return state.present.blocks || [];
+	return state.history.present.blocks || [];
 }
 
 /**
@@ -16,9 +16,9 @@ export function isInserterOpened( state ) {
 }
 
 export const hasUndo = (state) => {
-	return state.past?.length;
+	return state.history.past?.length;
 };
 
 export const hasRedo = (state) => {
-	return state.future?.length;
+	return state.history.future?.length;
 };

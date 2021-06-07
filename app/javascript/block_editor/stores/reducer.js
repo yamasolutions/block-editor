@@ -24,7 +24,7 @@ function blocksReducer(state = [], action) {
  * @param {boolean} state
  * @param {Object}  action
  */
-function isInserterOpened( state = true, action ) {
+function isInserterOpened( state = false, action ) {
 	switch ( action.type ) {
 		case 'SET_IS_INSERTER_OPENED':
 			return action.value;
@@ -32,14 +32,9 @@ function isInserterOpened( state = true, action ) {
 	return state;
 }
 
-export default undoable(blocksReducer, {
-	filter: includeAction(PERSIST_BLOCKS),
-});
-
-// TODO: How do we export both undoable and isInserterOpened ?
-// export default combineReducers( {
-//   isInserterOpened,
-//   undoable(blocksReducer, {
-//     filter: includeAction("PERSIST_BLOCKS")
-//   })
-// } );
+export default combineReducers( {
+  isInserterOpened: isInserterOpened,
+  history: undoable(blocksReducer, {
+    filter: includeAction('PERSIST_BLOCKS')
+  })
+} );
