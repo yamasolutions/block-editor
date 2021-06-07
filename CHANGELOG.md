@@ -10,6 +10,7 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 
 ### Added
 - Reusable Blocks
+- Block Inserter Library
 - Base styles for all blocks - this is using Bootstrap styles which adds a soft dependancy on the framework
 - Accordion block
 - Alert (callout) block
