@@ -18,6 +18,7 @@ export const settings = {
 	description:  'Promote an event.',
   icon,
   category: 'formatting',
+  // TODO: Uncomment when upgrading to 9.3+
   // example: {
   //   attributes: {
   //     title: 'Super awesome event',
@@ -26,7 +27,8 @@ export const settings = {
   //     day: "18",
   //     year: "1989",
   //     imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
-  //   }
+  //   },
+  //   viewportWidth: 1200
   // },
   attributes: {
     title: {
@@ -52,6 +54,12 @@ export const settings = {
     imageUrl: {
       attribute: 'src',
       selector: '.wp-block-be-event-image img'
+    },
+    url: {
+      type: "string",
+      source: "attribute",
+      selector: "a",
+      attribute: "href"
     }
   },
   edit({attributes, className, setAttributes, isSelected}) {
@@ -84,7 +92,16 @@ export const settings = {
         );
       }
     };
-    return (
+    return ([
+      <InspectorControls>
+				<PanelBody title='Event settings'>
+          <TextControl
+            label="URL"
+            value={ attributes.url }
+            onChange={ content => setAttributes({ url: content }) }
+          />
+				</PanelBody>
+      </InspectorControls>,
       <div className={ 'card ' + className }>
         <div className='wp-block-be-event-date'>
           <PlainText
@@ -130,7 +147,7 @@ export const settings = {
           />
         </div>
       </div>
-    );
+    ]);
   },
   save({ attributes }) {
     const eventImage = (src, alt) => {
@@ -144,7 +161,7 @@ export const settings = {
       );
     }
     return (
-      <div className='card'>
+      <a className='card' href={ attributes.url }>
         <div className='wp-block-be-event-date'>
           <span className="wp-block-be-event-day">{ attributes.day }</span>
           <span className="wp-block-be-event-year">{ attributes.year }</span>
@@ -158,7 +175,7 @@ export const settings = {
         <div className='wp-block-be-event-image'>
           { eventImage(attributes.imageUrl, 'Event Image') }
         </div>
-      </div>
+      </a>
     );
   }
 };
