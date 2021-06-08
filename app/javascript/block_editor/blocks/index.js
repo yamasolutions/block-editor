@@ -36,6 +36,11 @@ import * as card from './be-card';
 import * as cover from './be-cover';
 import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
+import * as instagram from './be-instagram';
+import * as review from './be-review';
+import * as event from './be-event';
+import * as menuItem from './be-menu-item';
+import * as menuItemSub from './be-menu-item-sub';
 
 export const registerBlocks = () => {
   // TODO: Remove this when upgrading to 10.5 -> https://github.com/WordPress/gutenberg/pull/30194
@@ -166,6 +171,11 @@ export const registerBlocks = () => {
   registerBlockType(callout.name, callout.settings);
   registerBlockType(card.name, card.settings);
   registerBlockType(contactForm.name, contactForm.settings);
+  registerBlockType(instagram.name, instagram.settings);
+  registerBlockType(review.name, review.settings);
+  registerBlockType(event.name, event.settings);
+  registerBlockType(menuItem.name, menuItem.settings);
+  registerBlockType(menuItemSub.name, menuItemSub.settings);
   registerBlockType(cover.name, cover.settings);
   registerBlockType(recentPosts.name, recentPosts.settings);
 
