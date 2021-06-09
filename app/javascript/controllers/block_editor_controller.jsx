@@ -17,6 +17,13 @@ export default class extends Controller {
   connect() {
     const settings = {
       alignWide: true,
+      imageSizes: [
+        { slug: 'thumbnail', name: 'Thumbnail' },
+        { slug: 'small', name: 'Small' },
+        { slug: 'medium', name: 'Medium' },
+        { slug: 'large', name: 'Large' },
+        { slug: 'full', name: 'Full Size' },
+      ],
       __experimentalFeatures: {
         global: {
           color: {
