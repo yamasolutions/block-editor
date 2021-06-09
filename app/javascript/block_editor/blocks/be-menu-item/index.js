@@ -83,11 +83,13 @@ export const settings = {
             />
             <div className='wp-block-be-menu-item-badges'>
               { attributes.isVegan &&
-                <img
-                  className="wp-block-be-menu-item-badge"
-                  src={ "https://source.unsplash.com/random/800x500" }
-                  alt={ "This is a vegan friendly menu item." }
-                />
+                <div className="wp-block-be-menu-item-badge vegan"/>
+              }
+              { attributes.isVegetarian &&
+                <div className="wp-block-be-menu-item-badge vegetarian" />
+              }
+              { attributes.isGlutenFree &&
+                <div className="wp-block-be-menu-item-badge gluten-free" />
               }
             </div>
           </div>
@@ -121,11 +123,13 @@ export const settings = {
               <h3 className="wp-block-be-menu-item-title">{ attributes.title }</h3>
               <div className='wp-block-be-menu-item-badges'>
                 { attributes.isVegan &&
-                  <img
-                    className="wp-block-be-menu-item-badge"
-                    src={ "https://source.unsplash.com/random/800x500" }
-                    alt={ "This is a vegan friendly menu item." }
-                  />
+                  <div className="wp-block-be-menu-item-badge vegan"/>
+                }
+                { attributes.isVegetarian &&
+                  <div className="wp-block-be-menu-item-badge vegetarian" />
+                }
+                { attributes.isGlutenFree &&
+                  <div className="wp-block-be-menu-item-badge gluten-free" />
                 }
               </div>
             </div>
