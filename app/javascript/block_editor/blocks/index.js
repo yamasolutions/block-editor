@@ -157,7 +157,6 @@ export const registerBlocks = () => {
   unregisterBlockStyle('core/button', 'fill');
   unregisterBlockStyle('core/button', 'outline');
   unregisterBlockStyle('core/image', 'default');
-  unregisterBlockStyle('core/image', 'rounded');
   unregisterBlockStyle('core/table', 'regular');
   unregisterBlockStyle('core/table', 'stripes');
 
@@ -210,10 +209,6 @@ export const registerBlocks = () => {
     name: 'default',
     label: 'Default',
     isDefault: true
-  } );
-  registerBlockStyle( 'core/image', {
-    name: 'padded',
-    label: 'Padded'
   } );
   registerBlockStyle( 'core/columns', {
     name: 'no-stack',
