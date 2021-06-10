@@ -1,4 +1,16 @@
 .wp-block-column {
   flex: 1;
   margin: 0 $spacer;
+
+  &.is-vertically-aligned-top {
+    align-self: flex-start;
+  }
+
+  &.is-vertically-aligned-center {
+    align-self: center;
+  }
+
+  &.is-vertically-aligned-bottom {
+    align-self: flex-end;
+  }
 }
