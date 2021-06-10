@@ -156,7 +156,6 @@ export const registerBlocks = () => {
   unregisterBlockStyle('core/separator', 'wide');
   unregisterBlockStyle('core/button', 'fill');
   unregisterBlockStyle('core/button', 'outline');
-  unregisterBlockStyle('core/image', 'default');
   unregisterBlockStyle('core/table', 'regular');
   unregisterBlockStyle('core/table', 'stripes');
 
@@ -204,11 +203,6 @@ export const registerBlocks = () => {
   registerBlockStyle( 'core/table', {
     name: 'striped',
     label: 'Striped'
-  } );
-  registerBlockStyle( 'core/image', {
-    name: 'default',
-    label: 'Default',
-    isDefault: true
   } );
   registerBlockStyle( 'core/columns', {
     name: 'no-stack',
