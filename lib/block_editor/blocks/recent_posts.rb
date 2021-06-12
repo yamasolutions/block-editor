@@ -13,7 +13,7 @@ module BlockEditor
 
         controller.render(
           partial: "block_editor/blocks/#{name}/block",
-          locals: { collection: skope(options) },
+          locals: { collection: skope(options), options: options },
           layout: false
         )
       end
