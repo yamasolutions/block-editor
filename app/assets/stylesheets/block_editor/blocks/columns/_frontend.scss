@@ -1,6 +1,10 @@
 .wp-block-columns {
-  margin: $spacer*1.20 0;
+  --#{$variable-prefix}gutter-x: #{$grid-gutter-width};
+  --#{$variable-prefix}gutter-y: 0;
   display: flex;
+  margin-top: calc(var(--#{$variable-prefix}gutter-y) * -1); // stylelint-disable-line function-disallowed-list
+  margin-right: calc(var(--#{$variable-prefix}gutter-x) / -2); // stylelint-disable-line function-disallowed-list
+  margin-left: calc(var(--#{$variable-prefix}gutter-x) / -2); // stylelint-disable-line function-disallowed-list
 
   &:not(.is-style-no-stack) {
     @include media-breakpoint-down(lg) {
