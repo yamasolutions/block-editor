@@ -15,6 +15,7 @@ export const settings = {
 	description:  'Display a list of latest posts.',
   icon,
   category: 'widgets',
+  keywords: [ 'blog', 'article' ],
   attributes: {
     categories: {
       type: 'text'

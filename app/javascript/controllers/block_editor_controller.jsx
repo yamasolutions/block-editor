@@ -28,7 +28,23 @@ export default class extends Controller {
         global: {
           color: {
             custom: false,
-            palette: [],
+            palette: [
+              {
+                name: "Primary",
+                slug: "primary",
+                color: "#6D9C5F"
+              },
+              {
+                name: "Secondary",
+                slug: "secondary",
+                color: "#998867"
+              },
+              {
+                name: "White",
+                slug: "white",
+                color: "#fff"
+              }
+            ],
             gradients: []
           },
           typography: {
