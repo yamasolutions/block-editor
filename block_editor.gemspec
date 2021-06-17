@@ -4,10 +4,10 @@ Gem::Specification.new do |spec|
   spec.name        = "block_editor"
   spec.version     = BlockEditor::VERSION
   spec.authors     = ["Patrick Lindsay"]
-  spec.email       = ["ptrick@yamasolutions.com"]
+  spec.email       = ["patrick@yamasolutions.com"]
   spec.homepage    = "https://github.com/yamasolutions/block-editor"
   spec.summary     = "Ruby on Rails Block Editor"
-  spec.description = "WYSIWYG editor but much better.."
+  spec.description = "A block editor for Ruby on Rails built from the Wordpress Gutenberg project"
   spec.license     = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
