@@ -34,8 +34,9 @@ import * as accordion from './be-accordion';
 import * as callout from './be-alert';
 import * as card from './be-card';
 import * as cover from './be-cover';
-// import * as recentPosts from './recent-posts';
+import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
+import * as review from './be-review';
 
 export const registerBlocks = () => {
   // TODO: Remove this when upgrading to 10.5 -> https://github.com/WordPress/gutenberg/pull/30194
@@ -151,8 +152,6 @@ export const registerBlocks = () => {
   unregisterBlockStyle('core/separator', 'wide');
   unregisterBlockStyle('core/button', 'fill');
   unregisterBlockStyle('core/button', 'outline');
-  unregisterBlockStyle('core/image', 'default');
-  unregisterBlockStyle('core/image', 'rounded');
   unregisterBlockStyle('core/table', 'regular');
   unregisterBlockStyle('core/table', 'stripes');
 
@@ -166,8 +165,9 @@ export const registerBlocks = () => {
   registerBlockType(callout.name, callout.settings);
   registerBlockType(card.name, card.settings);
   registerBlockType(contactForm.name, contactForm.settings);
+  registerBlockType(review.name, review.settings);
   registerBlockType(cover.name, cover.settings);
-  // registerBlockType(recentPosts.name, recentPosts.settings);
+  registerBlockType(recentPosts.name, recentPosts.settings);
 
   // Register custom block styles
   registerBlockStyle( 'core/button', {
@@ -195,15 +195,6 @@ export const registerBlocks = () => {
   registerBlockStyle( 'core/table', {
     name: 'striped',
     label: 'Striped'
-  } );
-  registerBlockStyle( 'core/image', {
-    name: 'default',
-    label: 'Default',
-    isDefault: true
-  } );
-  registerBlockStyle( 'core/image', {
-    name: 'padded',
-    label: 'Padded'
   } );
   registerBlockStyle( 'core/columns', {
     name: 'no-stack',

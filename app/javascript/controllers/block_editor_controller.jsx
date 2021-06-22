@@ -17,11 +17,34 @@ export default class extends Controller {
   connect() {
     const settings = {
       alignWide: true,
+      imageSizes: [
+        { slug: 'thumbnail', name: 'Thumbnail' },
+        { slug: 'small', name: 'Small' },
+        { slug: 'medium', name: 'Medium' },
+        { slug: 'large', name: 'Large' },
+        { slug: 'full', name: 'Full Size' },
+      ],
       __experimentalFeatures: {
         global: {
           color: {
             custom: false,
-            palette: [],
+            palette: [
+              {
+                name: "Primary",
+                slug: "primary",
+                color: "#6D9C5F"
+              },
+              {
+                name: "Secondary",
+                slug: "secondary",
+                color: "#998867"
+              },
+              {
+                name: "White",
+                slug: "white",
+                color: "#fff"
+              }
+            ],
             gradients: []
           },
           typography: {
