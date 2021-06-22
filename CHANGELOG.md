@@ -9,6 +9,17 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 -
 
 ### Added
+-
+
+### Fixed
+-
+
+## v1.0.0 - 2021-06-15
+
+### Breaking Changes
+-
+
+### Added
 - Reusable Blocks
 - Block Inserter Library
 - Base styles for all blocks - this is using Bootstrap styles which adds a soft dependancy on the framework
@@ -20,7 +31,7 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 - Keyboard shortcuts
 
 ### Fixed
--
+- Added margin-bottom to sidebar to account for footer
 
 ## v0.1.3 - 2021-03-16
 

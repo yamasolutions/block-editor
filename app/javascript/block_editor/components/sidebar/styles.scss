@@ -1,42 +1,43 @@
 .block-editor__sidebar {
-	background: $white;
-	border-left: $border-width solid $gray-200;
-	bottom: 0;
-	height: 100vh;
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: $sidebar-width;
-	//z-index: z-index(".edit-site-sidebar");
+  background: $white;
+  border-left: $border-width solid $gray-200;
+  bottom: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: $sidebar-width;
+  margin-bottom: 33px;
+  //z-index: z-index(".edit-site-sidebar");
 
-	@include break-small() {
-		-webkit-overflow-scrolling: touch;
-		height: auto;
-		overflow: auto;
-		// top: $admin-bar-height-big + $header-height;
-	}
+  @include break-small() {
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    overflow: auto;
+    // top: $admin-bar-height-big + $header-height;
+  }
 
-	// @include break-medium() {
-	// 	top: $admin-bar-height + $header-height;
-	// }
+  // @include break-medium() {
+    // 	top: $admin-bar-height + $header-height;
+  // }
 
-	@include break-small() {
-		display: block;
-	}
+  @include break-small() {
+    display: block;
+  }
 
-	> .components-panel {
-		border-left: 0;
-		border-right: 0;
-		margin-bottom: -1px;
-		margin-top: -1px;
+  > .components-panel {
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: -1px;
+    margin-top: -1px;
 
-		> .components-panel__header {
-			background: $gray-200;
-		}
-	}
+    > .components-panel__header {
+      background: $gray-200;
+    }
+  }
 
-	.block-editor-block-inspector__card {
-		margin: 0;
-	}
+  .block-editor-block-inspector__card {
+    margin: 0;
+  }
 }

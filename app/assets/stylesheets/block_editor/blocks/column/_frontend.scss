@@ -1,4 +1,18 @@
 .wp-block-column {
   flex: 1;
-  margin: 0 $spacer;
+  padding-right: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+  padding-left: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+  margin-top: var(--#{$variable-prefix}gutter-y);
+
+  &.is-vertically-aligned-top {
+    align-self: flex-start;
+  }
+
+  &.is-vertically-aligned-center {
+    align-self: center;
+  }
+
+  &.is-vertically-aligned-bottom {
+    align-self: flex-end;
+  }
 }
