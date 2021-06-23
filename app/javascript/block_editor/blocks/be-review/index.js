@@ -20,35 +20,24 @@ export const settings = {
   category: 'formatting',
   example: {
     attributes: {
-      title: 'Absolutely amazing!',
       author: 'John Doe',
-      date: '18 Oct 1989',
+      location: 'Newcastle, England',
       body: ["Great! Can't wait to try it again."],
-      rating: 5,
       imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
     }
   },
   attributes: {
-    title: {
-      source: 'text',
-      selector: '.card-title'
-    },
     author: {
       source: 'text',
-      selector: '.card-author'
+      selector: '.testimonial--name'
     },
-    date: {
+    location: {
       source: 'text',
-      selector: '.card-date'
+      selector: '.testimonial--location'
     },
     body: {
-      type: 'array',
-      source: 'children',
-      selector: '.card-content'
-    },
-    rating: {
-      type: 'number',
-      default: 4
+      source: 'text',
+      selector: '.testimonial--body'
     },
     imageAlt: {
       attribute: 'alt',
@@ -85,66 +74,42 @@ export const settings = {
               onClick={ openEvent }
               className="button button-large"
             >
-            Pick an image
+            img
             </Button>
           </div>
         );
       }
     };
     return ([
-      <InspectorControls>
-				<PanelBody title='Review settings'>
-          <RangeControl
-              label="Rating"
-              value={ attributes.rating }
-              onChange={ ( content ) => setAttributes( { rating: content } ) }
-              min={ 1 }
-              max={ 5 }
+      <div className="wp-block-be-review">
+        <RichText
+          onChange={ content => setAttributes({ body: content }) }
+          value={ attributes.body }
+          multiline={ false }
+          placeholder="Review testimonial.."
+          className="testimonial--body"
+        />
+        <div className='card-divider'>
+          <MediaUpload
+            onSelect={ media => { setAttributes({ imageAlt: media.alt, imageUrl: media.url }); } }
+            type="image"
+            value={ attributes.imageID }
+            render={ ({ open }) => getImageButton(open) }
           />
-				</PanelBody>
-      </InspectorControls>,
-      <div className={ 'card ' + className }>
-        <div className='card-body'>
-          <div className='card-img-top'>
-            <MediaUpload
-              onSelect={ media => { setAttributes({ imageAlt: media.alt, imageUrl: media.url }); } }
-              type="image"
-              value={ attributes.imageID }
-              render={ ({ open }) => getImageButton(open) }
+          <div>
+            <PlainText
+              onChange={ content => setAttributes({ author: content }) }
+              value={ attributes.author }
+              placeholder="Customer Name"
+              className="testimonial--name"
+            />
+            <PlainText
+              onChange={ content => setAttributes({ location: content }) }
+              value={ attributes.location }
+              placeholder="City, Country"
+              className="testimonial--location"
             />
           </div>
-          <PlainText
-            onChange={ content => setAttributes({ title: content }) }
-            value={ attributes.title }
-            placeholder="Catchy review title"
-            className="card-title h4"
-          />
-          <div className='card-star-rating'>
-            {[...Array(attributes.rating)].map((value, index) => {
-              return <i className='bi bi bi-star-fill'></i>
-            })}
-          </div>
-          <RichText
-            onChange={ content => setAttributes({ body: content }) }
-            value={ attributes.body }
-            multiline="p"
-            placeholder="Review testimonial.."
-            className="card-content"
-          />
-        </div>
-        <div className='card-footer'>
-          <PlainText
-            onChange={ content => setAttributes({ author: content }) }
-            value={ attributes.author }
-            placeholder="Patrick Lindsay"
-            className="card-author"
-          />
-          <PlainText
-            onChange={ content => setAttributes({ date: content }) }
-            value={ attributes.date }
-            placeholder="Oct 18, 1989"
-            className="card-date"
-          />
         </div>
       </div>
     ]);
@@ -161,31 +126,16 @@ export const settings = {
       );
     }
     return (
-      <div className="card">
-        <div className="card-body">
-          <div className="card-img-top">
-            { reviewImage(attributes.imageUrl, attributes.imageAlt) }
+      <div>
+        <p className="testimonial--body">{ attributes.body }</p>
+        <div className='card-divider'>
+          { reviewImage(attributes.imageUrl, attributes.imageAlt) }
+          <div>
+            <span className="testimonial--name">{ attributes.author }</span>
+            <span className="testimonial--location">{ attributes.location }</span>
           </div>
-
-          <h4 className="card-title">
-            { attributes.title }
-          </h4>
-          <div className='card-star-rating'>
-            {[...Array(attributes.rating)].map((value, index) => {
-              return <i className='bi bi-star-fill'></i>
-            })}
-          </div>
-          <div className='card-content'>
-            { attributes.body }
-          </div>
-        </div>
-        <div className="card-footer">
-          <span className="card-author">{ attributes.author }</span>
-          <span className="card-date">{ attributes.date }</span>
         </div>
       </div>
     );
   }
 };
-
-
