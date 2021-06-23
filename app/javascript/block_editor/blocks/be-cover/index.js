@@ -1,15 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {
-	InnerBlocks
-} from '@wordpress/block-editor';
-import { registerBlockStyle } from '@wordpress/blocks';
-import { createBlock } from '@wordpress/blocks';
-import { rawHandler } from '@wordpress/blocks';
-
-import { TextControl, PanelBody, ToggleControl, Button } from '@wordpress/components';
-import { InspectorControls, RichText, MediaUpload, PlainText } from '@wordpress/block-editor'
+import { Button } from '@wordpress/components';
+import { InnerBlocks, MediaUpload } from '@wordpress/block-editor';
 import { cover as icon } from '@wordpress/icons';
 
 const BLOCKS_TEMPLATE = [

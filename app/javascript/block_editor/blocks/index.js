@@ -36,6 +36,7 @@ import * as card from './be-card';
 import * as cover from './be-cover';
 import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
+import * as partial from './be-partial';
 import * as review from './be-review';
 
 export const registerBlocks = () => {
@@ -165,6 +166,7 @@ export const registerBlocks = () => {
   registerBlockType(callout.name, callout.settings);
   registerBlockType(card.name, card.settings);
   registerBlockType(contactForm.name, contactForm.settings);
+  registerBlockType(partial.name, partial.settings);
   registerBlockType(review.name, review.settings);
   registerBlockType(cover.name, cover.settings);
   registerBlockType(recentPosts.name, recentPosts.settings);
