@@ -9,7 +9,7 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 -
 
 ### Added
--
+- Partial block
 
 ### Fixed
 -
