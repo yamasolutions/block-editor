@@ -50,8 +50,8 @@ end
 ```
 * Add the block editor Javascript and styles within your `HEAD` tag
 ```
-  <%= javascript_pack_tag 'block_editor/application', 'data-turbolinks-track': 'reload', webpacker: 'BlockEditor' %>
-  <%= stylesheet_pack_tag 'block_editor/application', 'data-turbolinks-track': 'reload', webpacker: 'BlockEditor' %>
+  <%= javascript_pack_tag 'block_editor/application', 'data-turbo-track': 'reload', webpacker: 'BlockEditor' %>
+  <%= stylesheet_pack_tag 'block_editor/application', 'data-turbo-track': 'reload', webpacker: 'BlockEditor' %>
 ```
 * Boom! You have a Block Editor linked to your model
 
@@ -88,7 +88,7 @@ Include the default styles into your application stylesheet;
 ### Backend
 Add the backend stylesheet where you are rendering the block editor, for example admin dashboard;
 ```
-<%= stylesheet_link_tag 'block_editor/backend', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'block_editor/backend', media: 'all', 'data-turbo-track': 'reload' %>
 ```
 
 ### Overriding and/or adding custom styles
@@ -106,10 +106,10 @@ When an image is successfully uploaded or selected the BlockEditorMediaUploader 
 callback({url: imageUrl})
 ```
 
-### Turbolinks
-Currently Block Editor is not compatible with Turbolinks as history is only being reset on full page loads. To disable Turbolinks per page add the following in your layout view file within your `<HEAD>`;;
+### Turbo/Turbolinks
+Currently Block Editor is not compatible with Turbo/Turbolinks as history is only being reset on full page loads. To disable Turbolinks per page add the following in your layout view file within your `<HEAD>`;;
 ```
-<meta name="turbolinks-visit-control" content="reload">
+<meta name="turbo-visit-control" content="reload">
 ```
 
 ### Reusable Blocks
