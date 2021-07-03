@@ -35,12 +35,12 @@ module BlockEditor
     def self.render_block(block, options)
       block.render(options)
     rescue StandardError => e
-      respond_with_block_error(e)
+      respond_with_block_error(block, e)
     end
 
     # Handles block errors
-    def self.respond_with_block_error(error)
-      Rails.logger.error("Error rendering block - #{error.message}")
+    def self.respond_with_block_error(block, error)
+      Rails.logger.error("Error rendering '#{block.name}' block - #{error.message}")
       ''
     end
   end
