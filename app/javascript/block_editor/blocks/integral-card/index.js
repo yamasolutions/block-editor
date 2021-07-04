@@ -12,21 +12,25 @@ import { TextControl, PanelBody, ToggleControl, Button } from '@wordpress/compon
 import { InspectorControls, RichText, MediaUpload, PlainText } from '@wordpress/block-editor'
 import { box as icon } from '@wordpress/icons';
 
-const name = 'be/card';
+const name = 'integral/card'; // Add foundation prefix?
 
 export { name };
 
 export const settings = {
-	title: 'Card',
+	title: 'Card (OLD)',
 	description:  'Group a piece of content in an eye catching container.',
   icon,
   category: 'formatting',
-  example: {
-    attributes: {
-      title: 'Container example',
-      imageUrl: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
-    }
-  },
+  // example: {
+  //   innerBlocks: [
+  //     {
+  //       name: 'core/paragraph',
+  //       attributes: {
+  //         content: 'Use a callout to grab the users attention.'
+  //       }
+  //     }
+  //   ]
+  // },
   attributes: {
     title: {
       source: 'text',
@@ -115,7 +119,7 @@ export const settings = {
           )}
 				</PanelBody>
       </InspectorControls>,
-      <div className={ 'card ' + className }>
+      <div className={ 'wp-block-be-card card ' + className }>
         <MediaUpload
           onSelect={ media => { setAttributes({ imageAlt: media.alt, imageUrl: media.url }); } }
           type="image"
@@ -162,7 +166,7 @@ export const settings = {
     }
 
     return (
-      <div className="card">
+      <div className="wp-block-be-card card">
         { attributes.url ? (
           <a
             href={ attributes.url }
@@ -201,5 +205,96 @@ export const settings = {
       }
       </div>
     );
-  }
+  },
+  deprecated: [
+    {
+      attributes: {
+        title: {
+          source: 'text',
+          selector: '.card__title'
+        },
+        body: {
+          type: 'array',
+          source: 'children',
+          selector: '.card__body'
+        },
+        imageAlt: {
+          attribute: 'alt',
+          selector: '.card__image'
+        },
+        imageUrl: {
+          attribute: 'src',
+          selector: '.card__image'
+        },
+        hasCallToAction: {
+          type: 'boolean'
+        },
+        callToAction: {
+          type: 'text'
+        },
+        url: {
+          type: 'text'
+        },
+        openInNewTab: {
+          type: 'boolean'
+        }
+      },
+      save({ attributes }) {
+        const linkTarget = (attributes.openInNewTab) ? '_blank' : null
+        const cardImage = (src, alt) => {
+          if(!src) return null;
+
+          return (
+            <img
+              className="card__image"
+              src={ src }
+              alt={ alt }
+            />
+          );
+        }
+
+        return (
+          <div className="card">
+            { attributes.url ? (
+              <a
+                href={ attributes.url }
+                target= { linkTarget }
+              >
+                { cardImage(attributes.imageUrl, attributes.imageAlt) }
+              </a>
+            ) : (
+              cardImage(attributes.imageUrl, attributes.imageAlt)
+            )}
+            <div className="card-section">
+              <h3 className="card__title">
+                { attributes.url ? (
+                  <a
+                    href={ attributes.url }
+                    target= { linkTarget }
+                  >
+                    { attributes.title }
+                  </a>
+                ) : (
+                  attributes.title
+                )}
+              </h3>
+              <hr className='card__divider'/>
+              <div className='card__body'>
+                { attributes.body }
+              </div>
+            </div>
+          { attributes.hasCallToAction && attributes.url &&
+            <RichText.Content
+              tagName="a"
+              className='button expanded'
+              href={ attributes.url }
+              target= { linkTarget }
+              value={ attributes.callToAction }
+            />
+          }
+          </div>
+        );
+      }
+    }
+  ]
 };

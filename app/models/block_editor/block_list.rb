@@ -20,6 +20,10 @@ module BlockEditor
     scope :reusable, -> { where(listable_id: nil, listable_type: nil) }
     scope :search, ->(query) { where('lower(name) LIKE ?', "%#{query.downcase}%") }
 
+    def self.with_block(block)
+      all.select { |bl| Nokogiri::HTML::DocumentFragment.parse(bl.content).search('.//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{block}") }.any? }
+    end
+
     def reusable?
       listable_type.nil? && listable_id.nil?
     end
