@@ -88,7 +88,7 @@ export const settings = {
       }
     };
     return (
-      <div className={ className }>
+      <div className={ 'wp-block-be-cover ' + className }>
         <MediaUpload
           onSelect={ media => { setAttributes({ imageAlt: media.alt, imageUrl: media.url }); } }
           type="image"
