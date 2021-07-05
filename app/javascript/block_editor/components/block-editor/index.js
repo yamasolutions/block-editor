@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 /**
  * WordPress dependencies
  */
@@ -34,6 +35,7 @@ import {
 import Sidebar from '../sidebar';
 import Header from '../header';
 import Notices from '../notices';
+import TextEditor from '../text-editor';
 import PopoverWrapper from './popover-wrapper';
 import '../../stores'; // TODO: Think this store registering needs to be moved somewhere else so that it happens everytime a BlockEditor is initialized
 
@@ -99,7 +101,9 @@ function BlockEditor( { input, settings: _settings } ) {
 
   const { setIsInserterOpened } = useDispatch( 'block-editor' );
   const isInserterOpened = useSelect((select) => select("block-editor").isInserterOpened());
+  const mode = 'text';
 
+  console.log(serialize(blocks))
   return (
     <>
       <FullscreenMode isActive={false} />
@@ -133,17 +137,28 @@ function BlockEditor( { input, settings: _settings } ) {
                 }
                 content={
                   <>
-                    <Notices />
-                    <Sidebar.InspectorFill>
-                      <BlockInspector />
-                    </Sidebar.InspectorFill>
-                    <BlockEditorKeyboardShortcuts.Register />
-                    <BlockEditorKeyboardShortcuts />
-                    <WritingFlow>
-                      <ObserveTyping>
-                        <BlockList className="editor-styles-wrapper" />
-                      </ObserveTyping>
-                    </WritingFlow>
+                    { (mode === 'text') && (
+                      <TextEditor
+                        value={ serialize(blocks) }
+                        handleChange={ handleChange }
+                      />
+                    )}
+
+                    { (mode === 'visual') && (
+                      <>
+                        <Notices />
+                        <Sidebar.InspectorFill>
+                          <BlockInspector />
+                        </Sidebar.InspectorFill>
+                        <BlockEditorKeyboardShortcuts.Register />
+                        <BlockEditorKeyboardShortcuts />
+                        <WritingFlow>
+                          <ObserveTyping>
+                            <BlockList className="editor-styles-wrapper" />
+                          </ObserveTyping>
+                        </WritingFlow>
+                      </>
+                    )}
                   </>
                 }
               />

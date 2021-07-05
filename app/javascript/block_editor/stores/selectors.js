@@ -15,6 +15,10 @@ export function isInserterOpened( state ) {
 	return state.isInserterOpened;
 }
 
+export function getPostContent( state ) {
+	return state.postContent;
+}
+
 export const hasUndo = (state) => {
 	return state.history.past?.length;
 };

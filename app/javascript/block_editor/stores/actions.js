@@ -19,6 +19,13 @@ export function setIsInserterOpened( value ) {
 	};
 }
 
+export function setPostContent( value ) {
+	return {
+		type: 'SET_POST_CONTENT',
+		value,
+	};
+}
+
 export function undo() {
 	return ReduxUndo.undo();
 }
