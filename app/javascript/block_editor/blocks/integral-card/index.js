@@ -240,7 +240,8 @@ export const settings = {
         }
       },
       save({ attributes }) {
-        const linkTarget = (attributes.openInNewTab) ? '_blank' : null
+        const linkTarget = (attributes.openInNewTab) ? '_blank' : '_self';
+
         const cardImage = (src, alt) => {
           if(!src) return null;
 
