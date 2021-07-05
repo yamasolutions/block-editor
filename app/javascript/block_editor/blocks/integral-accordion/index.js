@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
+import { createBlock } from '@wordpress/blocks';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { InnerBlocks, InspectorControls, PlainText } from '@wordpress/block-editor';
 import { box as icon } from '@wordpress/icons';
@@ -147,6 +148,21 @@ export const settings = {
         );
       }
     }
-  ]
+  ],
+  transforms: {
+    to: [
+      {
+        type: 'block',
+        blocks: [ 'be/accordion' ],
+        transform: ( attributes, innerBlocks ) => {
+          return createBlock(
+            'be/accordion',
+            attributes,
+            innerBlocks
+          );
+        },
+      },
+    ],
+  },
 };
 

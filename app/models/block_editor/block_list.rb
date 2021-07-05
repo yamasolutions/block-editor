@@ -24,6 +24,16 @@ module BlockEditor
       all.select { |bl| Nokogiri::HTML::DocumentFragment.parse(bl.content).search('.//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{block}") }.any? }
     end
 
+    def rename_block_type!(old_name, new_name)
+      self.content = self.content.gsub("wp:#{old_name}", "wp:#{new_name}")
+      self.save!
+      # markup = Nokogiri::HTML::DocumentFragment.parse(content)
+      # markup.search('.//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{old_name}") }.each do |comment|
+      #   comment.content = comment.content.gsub(old_name, new_name)
+      # end
+      # markup.to_s
+    end
+
     def reusable?
       listable_type.nil? && listable_id.nil?
     end
