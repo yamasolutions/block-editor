@@ -26,17 +26,9 @@
     > tbody {
       vertical-align: inherit;
     }
-    > tbody > tr > th {
-      text-align: center;
-    }
 
     > thead {
       vertical-align: bottom;
-      background: $secondary;
-      color: $white;
-    }
-    > thead > tr > th:first-child{
-      text-align: center;
     }
 
     // Highlight border color between thead, tbody and tfoot.
