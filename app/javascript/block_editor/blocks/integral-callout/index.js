@@ -47,13 +47,16 @@ export const settings = {
     return <div role="alert" className='wp-block-be-alert alert'><InnerBlocks.Content /></div>;
   },
   transforms: {
-    from: [
+    to: [
       {
-        type: 'raw',
-        priority: 1,
-        selector: 'div.callout, div.info-box, div.buy-box',
-        transform( node ) {
-          return createBlock( 'integral/foundation-callout', {}, rawHandler({ HTML: node.innerHTML }));
+        type: 'block',
+        blocks: [ 'be/alert' ],
+        transform: ( attributes, innerBlocks ) => {
+          return createBlock(
+            'be/alert',
+            attributes,
+            innerBlocks
+          );
         },
       },
     ],
