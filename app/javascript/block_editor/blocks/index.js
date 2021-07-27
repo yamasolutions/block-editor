@@ -16,6 +16,7 @@ import {
   registerBlockType,
   unregisterBlockType,
   registerBlockStyle,
+  registerBlockVariation,
   unregisterBlockStyle,
   unregisterBlockVariation
 } from '@wordpress/blocks';
@@ -201,6 +202,10 @@ export const registerBlocks = () => {
     name: 'outline-secondary',
     label: 'Secondary (Outlined)'
   } );
+  registerBlockStyle( 'core/button', {
+    name: 'clear',
+    label: 'Clear'
+  } );
   registerBlockStyle( 'core/table', {
     name: 'unstriped',
     label: 'Unstriped',
@@ -213,5 +218,32 @@ export const registerBlocks = () => {
   registerBlockStyle( 'core/columns', {
     name: 'no-stack',
     label: 'No Stacking'
+  } );
+
+  // Register customer block variations
+  registerBlockVariation( 'core/group', {
+    name: 'group-container',
+    title: 'Container',
+    description: 'Combine blocks into a width constrained group.',
+    attributes: {
+      className: 'container'
+    }
+  });
+  registerBlockVariation( 'core/heading', {
+    name: 'headiing-display',
+    title: 'Display Heading',
+    description: 'Headings used within pages to draw attention to content.',
+    attributes: {
+      className: 'heading-display'
+    }
+  });
+
+  registerBlockStyle( 'core/group', {
+    name: 'padding-transparent',
+    label: 'Padded (Transparent)'
+  } );
+  registerBlockStyle( 'core/group', {
+    name: 'padding-dark',
+    label: 'Padded (Dark)'
   } );
 };
