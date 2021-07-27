@@ -6,8 +6,8 @@ import { InnerBlocks, MediaUpload } from '@wordpress/block-editor';
 import { cover as icon } from '@wordpress/icons';
 
 const BLOCKS_TEMPLATE = [
-    [ 'core/heading', { content: 'Example Cover Title' } ],
-    [ 'core/paragraph', { content: 'Break up content and draw attention to something using a cover block' } ]
+  [ 'core/heading', { content: 'Example Cover Title' } ],
+  [ 'core/paragraph', { content: 'Break up content and draw attention to something using a cover block' } ]
 ];
 const ALLOWED_BLOCKS = [ 'core/buttons', 'core/heading', 'core/paragraph', 'core/list' ];
 const name = 'be/cover';
@@ -20,9 +20,6 @@ export const settings = {
   icon,
   category: 'formatting',
   styles: [
-    { name: 'left', label: 'Left Side', isDefault: true },
-    { name: 'right', label: 'Right Side' },
-    { name: 'full-width', label: 'Full Width' }
   ],
   example: {
     innerBlocks: [

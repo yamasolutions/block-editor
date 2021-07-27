@@ -13,6 +13,10 @@ import { InspectorControls, RichText, MediaUpload, PlainText } from '@wordpress/
 import { box as icon } from '@wordpress/icons';
 
 const name = 'be/card';
+const ALLOWED_BLOCKS = [ 'core/paragraph', 'core/list' ];
+const BLOCKS_TEMPLATE = [
+  [ 'core/paragraph', { placeholder: 'Group a piece of content in an eye catching container.' } ]
+];
 
 export { name };
 
@@ -31,11 +35,6 @@ export const settings = {
     title: {
       source: 'text',
       selector: '.card-title'
-    },
-    body: {
-      type: 'array',
-      source: 'children',
-      selector: '.card-content'
     },
     imageAlt: {
       attribute: 'alt',
@@ -62,7 +61,7 @@ export const settings = {
     const getImageButton = (openEvent) => {
       if(attributes.imageUrl) {
         return (
-          <>
+          <div className="card-img-top">
             { isSelected &&
               <Button
                 onClick={ openEvent }
@@ -73,14 +72,13 @@ export const settings = {
             }
             <img
               src={ attributes.imageUrl }
-              className="card-img-top"
             />
-          </>
+          </div>
         );
       }
       else {
         return (
-          <div className="block-editor-image-placeholder">
+          <div className="card-img-top block-editor-image-placeholder">
             <Button
               onClick={ openEvent }
               className="button button-large"
@@ -129,21 +127,19 @@ export const settings = {
             placeholder="Your card title"
             className="card-title h2"
           />
-          <RichText
-            onChange={ content => setAttributes({ body: content }) }
-            value={ attributes.body }
-            multiline="p"
-            placeholder="Your card text"
+          <InnerBlocks
+            allowedBlocks={ ALLOWED_BLOCKS }
+            template={ BLOCKS_TEMPLATE }
           />
+          { attributes.hasCallToAction && attributes.url &&
+              <PlainText
+                onChange={ content => setAttributes({ callToAction: content }) }
+                value={ attributes.callToAction }
+                placeholder="Your Call To Action"
+                className="card-link"
+              />
+          }
         </div>
-      { attributes.hasCallToAction && attributes.url &&
-        <PlainText
-          onChange={ content => setAttributes({ callToAction: content }) }
-          value={ attributes.callToAction }
-          placeholder="Your Call To Action"
-          className="card-link"
-        />
-      }
       </div>
     ]);
   },
@@ -154,7 +150,7 @@ export const settings = {
 
       return (
         <img
-          className="card-img-top"
+          className=""
           src={ src }
           alt={ alt }
         />
@@ -167,11 +163,14 @@ export const settings = {
           <a
             href={ attributes.url }
             target= { linkTarget }
+            className="card-img-top"
           >
             { cardImage(attributes.imageUrl, attributes.imageAlt) }
           </a>
         ) : (
-          cardImage(attributes.imageUrl, attributes.imageAlt)
+          <div className="card-img-top">
+            { cardImage(attributes.imageUrl, attributes.imageAlt) }
+          </div>
         )}
         <div className="card-body">
           <h3 className="card-title">
@@ -187,18 +186,18 @@ export const settings = {
             )}
           </h3>
           <div className='card-content'>
-            { attributes.body }
+            <InnerBlocks.Content />
           </div>
+          { attributes.hasCallToAction && attributes.url &&
+            <RichText.Content
+              tagName="a"
+              className='card-link'
+              href={ attributes.url }
+              target= { linkTarget }
+              value={ attributes.callToAction }
+            />
+          }
         </div>
-      { attributes.hasCallToAction && attributes.url &&
-        <RichText.Content
-          tagName="a"
-          className='card-link'
-          href={ attributes.url }
-          target= { linkTarget }
-          value={ attributes.callToAction }
-        />
-      }
       </div>
     );
   }
