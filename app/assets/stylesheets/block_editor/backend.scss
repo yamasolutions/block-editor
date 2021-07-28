@@ -58,8 +58,6 @@
   @import "bootstrap/scss/carousel";
   @import "bootstrap/scss/spinners";
   @import "bootstrap/scss/offcanvas";
-  @import "bootstrap/scss/helpers"; // Helpers
-  @import "bootstrap/scss/utilities/api"; // Utilities
 
   // Block editor blocks
   @import "block_editor/blocks/frontend";
@@ -69,4 +67,7 @@
   // Custom blocks & extensions
   @import "block_editor/host_app/blocks/frontend";
   @import "block_editor/host_app/blocks/backend";
+
+  @import "bootstrap/scss/helpers"; // Helpers
+  @import "bootstrap/scss/utilities/api"; // Utilities
 }
