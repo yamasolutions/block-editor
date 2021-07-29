@@ -11,4 +11,10 @@
       display: block;
     }
   }
+  > * {
+    flex: 1;
+    padding-right: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+    padding-left: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+    margin-top: var(--#{$variable-prefix}gutter-y);
+  }
 }

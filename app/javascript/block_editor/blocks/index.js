@@ -27,6 +27,7 @@ import { addFilter } from '@wordpress/hooks';
  * Internal dependencies
  */
 import ColumnEdit from './column/edit';
+import ColumnsEdit from './columns/edit';
 import ButtonEdit from './button/edit';
 import BlockEdit from './block/edit';
 import MediaUpload from '../components/media-upload';
@@ -71,6 +72,16 @@ export const registerBlocks = () => {
     } );
   }
 
+  const replaceColumnsBlockEdit = ( settings, name ) => {
+    if ( name !== 'core/columns' ) {
+      return settings;
+    }
+
+    return assign( {}, settings, {
+      edit: ColumnsEdit // Removes columns limit
+    } );
+  }
+
   // Set default alignment to 'full' for all images
   const setDefaultAlignment = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
@@ -108,6 +119,12 @@ export const registerBlocks = () => {
     'blocks.registerBlockType',
     'block-editor/filters/core-column',
     replaceColumnBlockEdit
+  );
+
+  addFilter(
+    'blocks.registerBlockType',
+    'block-editor/filters/core-columns',
+    replaceColumnsBlockEdit
   );
 
   addFilter(

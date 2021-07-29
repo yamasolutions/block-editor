@@ -1,8 +1,8 @@
-.block-editor-block-list__block[data-type="core/columns"] {
-  > .block-editor-inner-blocks {
-    flex: 1;
-    padding-right: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
-    padding-left: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
-    margin-top: var(--#{$variable-prefix}gutter-y);
-  }
-}
+// .block-editor-block-list__block[data-type="core/columns"] {
+//   > .block-editor-inner-blocks {
+//     flex: 1;
+//     padding-right: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+//     padding-left: calc(var(--#{$variable-prefix}gutter-x) / 2); // stylelint-disable-line function-disallowed-list
+//     margin-top: var(--#{$variable-prefix}gutter-y);
+//   }
+// }
