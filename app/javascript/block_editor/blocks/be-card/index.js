@@ -26,7 +26,8 @@ export const settings = {
   icon,
   category: 'formatting',
 	styles: [
-		{ name: 'horizontal', label: 'horizontal', isDefault: true },
+		{ name: 'horizontal', label: 'Left', isDefault: true },
+		{ name: 'right', label: 'Right' },
 		{ name: 'vertical', label: 'Vertical' }
   ],
   example: {
