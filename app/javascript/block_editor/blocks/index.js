@@ -222,6 +222,10 @@ export const registerBlocks = () => {
     name: 'no-stack',
     label: 'No Stacking'
   } );
+  registerBlockStyle( 'core/paragraph', {
+    name: 'summary',
+    label: 'Summary'
+  } );
 
   // Register customer block variations
   registerBlockVariation( 'core/group', {
