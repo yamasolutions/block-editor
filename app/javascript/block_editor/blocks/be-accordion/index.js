@@ -85,7 +85,7 @@ export const settings = {
     ];
   },
   save({ attributes }) {
-    let buttonVisibilityClass = attributes.isOpenByDefault ? "collapsed" : "";
+    let buttonVisibilityClass = attributes.isOpenByDefault ? "" : "collapsed";
     let accordionVisibilityClass = attributes.isOpenByDefault ? "show" : "";
 
     return (
