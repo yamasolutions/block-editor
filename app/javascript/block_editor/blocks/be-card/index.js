@@ -25,11 +25,11 @@ export const settings = {
 	description:  'Group a piece of content in an eye catching container.',
   icon,
   category: 'formatting',
-	styles: [
-		{ name: 'horizontal', label: 'Left', isDefault: true },
-		{ name: 'right', label: 'Right' },
-		{ name: 'vertical', label: 'Vertical' }
-  ],
+	// styles: [
+	// 	{ name: 'horizontal', label: 'Left', isDefault: true },
+	// 	{ name: 'right', label: 'Right' },
+	// 	{ name: 'vertical', label: 'Vertical' }
+  // ],
   example: {
     attributes: {
       title: 'Container example',
