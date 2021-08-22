@@ -40,6 +40,12 @@ import * as recentPosts from './be-recent-posts';
 import * as contactForm from './be-contact-form';
 import * as partial from './be-partial';
 
+import * as integralAccordion from './integral-accordion';
+import * as integralCover from './integral-cover';
+import * as integralCoverButton from './integral-cover-button';
+import * as integralCallout from './integral-callout';
+import * as integralCard from './integral-card';
+
 export const registerBlocks = () => {
   // TODO: Remove this when upgrading to 10.5 -> https://github.com/WordPress/gutenberg/pull/30194
   const replaceButtonBlockEdit = ( settings, name ) => {
@@ -187,6 +193,13 @@ export const registerBlocks = () => {
   registerBlockType(cover.name, cover.settings);
   registerBlockType(recentPosts.name, recentPosts.settings);
 
+  registerBlockType(integralAccordion.name, integralAccordion.settings);
+  registerBlockType(integralCover.name, integralCover.settings);
+  registerBlockType(integralCoverButton.name, integralCoverButton.settings);
+  registerBlockType(integralCallout.name, integralCallout.settings);
+  registerBlockType(integralCard.name, integralCard.settings);
+  registerBlockType(integralReview.name, integralReview.settings);
+
   // Register custom block styles
   registerBlockStyle( 'core/button', {
     name: 'primary',
@@ -237,7 +250,7 @@ export const registerBlocks = () => {
     }
   });
   registerBlockVariation( 'core/heading', {
-    name: 'headiing-display',
+    name: 'heading-display',
     title: 'Display Heading',
     description: 'Headings used within pages to draw attention to content.',
     attributes: {
