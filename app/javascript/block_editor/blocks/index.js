@@ -198,7 +198,6 @@ export const registerBlocks = () => {
   registerBlockType(integralCoverButton.name, integralCoverButton.settings);
   registerBlockType(integralCallout.name, integralCallout.settings);
   registerBlockType(integralCard.name, integralCard.settings);
-  registerBlockType(integralReview.name, integralReview.settings);
 
   // Register custom block styles
   registerBlockStyle( 'core/button', {
