@@ -228,6 +228,14 @@ export const registerBlocks = () => {
   } );
 
   // Register customer block variations
+  registerBlockVariation( 'be/card', {
+    name: 'card-transparent',
+    title: 'Card (Transparent)',
+    description: 'Transparent card.',
+    attributes: {
+      className: 'card-transparent'
+    }
+  });
   registerBlockVariation( 'core/group', {
     name: 'group-container',
     title: 'Container',
