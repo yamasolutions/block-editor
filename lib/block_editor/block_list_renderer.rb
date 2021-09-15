@@ -44,7 +44,7 @@ module BlockEditor
 
     # Handles block errors
     def self.respond_with_block_error(error)
-      Rails.logger.error("Error rendering block - #{error.message}")
+      Rails.logger.error("Error rendering block - #{error.full_message}")
       ''
     end
   end
