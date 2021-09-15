@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {
-	InnerBlocks
+	InnerBlocks, useBlockProps
 } from '@wordpress/block-editor';
 import { registerBlockStyle } from '@wordpress/blocks';
 import { createBlock } from '@wordpress/blocks';
@@ -14,6 +14,7 @@ const name = 'be/alert';
 export { name };
 
 export const settings = {
+  apiVersion: 2,
 	title: 'Callout (Alert)',
 	description:  'Container to help draw attention to content.',
   icon,
@@ -39,13 +40,15 @@ export const settings = {
     ]
   },
   edit(props) {
+    const blockProps = useBlockProps()
+
     return (
-      <div role="alert" className={ 'alert ' + props.className }>
+      <div { ...blockProps }>
         <InnerBlocks/>
       </div>
     );
   },
   save() {
-    return <div role="alert" className='alert'><InnerBlocks.Content /></div>;
+    return <div role="alert" { ...useBlockProps.save() }><InnerBlocks.Content /></div>;
   }
 };
