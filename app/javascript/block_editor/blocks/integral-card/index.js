@@ -297,5 +297,20 @@ export const settings = {
         );
       }
     }
-  ]
+  ],
+  transforms: {
+    to: [
+      {
+        type: 'block',
+        blocks: [ 'be/card' ],
+        transform: ( attributes, innerBlocks ) => {
+          return createBlock(
+            'be/card',
+            attributes,
+            innerBlocks
+          );
+        },
+      },
+    ],
+  }
 };
