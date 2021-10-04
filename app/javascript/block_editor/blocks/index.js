@@ -164,7 +164,6 @@ export const registerBlocks = () => {
   unregisterBlockType('core/tag-cloud');
   unregisterBlockType('core/text-columns');
   unregisterBlockType('core/verse');
-  unregisterBlockType('core/video');
 
   // Unregister WP block styles
   unregisterBlockStyle('core/separator', 'wide');
