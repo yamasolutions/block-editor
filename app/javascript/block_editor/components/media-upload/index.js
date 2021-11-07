@@ -25,7 +25,7 @@ class MediaUpload extends Component {
 
       this.props.onSelect( { url: 'https://source.unsplash.com/random/800x500' });
     } else {
-      window.BlockEditorMediaUploader.open(this.props.onSelect);
+      window.BlockEditorMediaUploader.open(this.props.onSelect, this.props);
     }
   }
 

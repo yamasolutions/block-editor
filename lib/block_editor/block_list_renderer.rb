@@ -9,13 +9,13 @@ module BlockEditor
     def self.render(raw_html)
       html = Nokogiri::HTML::DocumentFragment.parse(raw_html)
 
+      html.search('img').each do |img|
+        img.set_attribute('loading', 'lazy')
+      end
+
       # Find & render all instances of a dynamic block (including reusable blocks)
       BlockEditor.dynamic_blocks.each do |dynamic_block|
         dynamic_block = dynamic_block.constantize
-
-        html.search('img').each do |img|
-          img.set_attribute('loading', 'lazy')
-        end
 
         html.search('.//comment()').select {|comment| comment.inner_text.starts_with?(" wp:#{dynamic_block.name}") }.each do |block_instance|
           block_attributes = block_instance.inner_text.split(" wp:#{dynamic_block.name}")[1][0...-1]
