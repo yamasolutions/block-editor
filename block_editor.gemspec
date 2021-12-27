@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,bin,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md", "package.json", "yarn.lock", "postcss.config.js"]
 
-  spec.add_dependency "rails", "~> 6.0"
+  spec.add_dependency "rails", "~> 7.0"
   spec.add_dependency 'webpacker', '~> 5.1'
 end
